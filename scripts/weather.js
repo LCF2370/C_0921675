@@ -10,6 +10,9 @@ $(document).ready(function(){
                 dataType: 'jsonp',
                 success: function(data){
                     console.log(data);
+                    console.log(data.main);
+                    console.log(data.main.feels_like);
+                    document.getElementById("demo").innerHTML = "Feels Like " + data.main.feels_like +"&deg;C";
                 }
             });
         }else{
@@ -18,6 +21,7 @@ $(document).ready(function(){
 
     });
 });
+
 /*function checkWeather(){
     var city = document.getElementById("cityNameValue").value;
     console.log(city);

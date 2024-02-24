@@ -5,10 +5,9 @@ function startTime() {
     let m = today.getMinutes();
     let s = today.getSeconds();
     m = checkTime(m);
-    s = checkTime(s);
     if(h >= 12){ var l = "PM"}
     else{ var l = "AM"}
-    document.getElementById('txt').innerHTML = n + ":" + m + ":" + s + " " + l; 
+    document.getElementById('txt').innerHTML = n + ":" + m + " " + l; 
     setTimeout(startTime, 1000);
   }
   

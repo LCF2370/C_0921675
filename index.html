@@ -8,37 +8,84 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body class="bg-body" onload="startTime()">
-    <nav class="navbar bg-info">
+    <!--<nav class="navbar bg-info">
         <div class="container-fluid">
         <a class="navbar-brand" href="#">
             <img src="images/logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
             WeDir
         </a>
         </div>
-    </nav>
-    <div class="container-sm position-absolute top-50 start-50 translate-middle p-3 mb-2 bg-info-subtle">            
-      <div class="row g-0">        
-        <div class="col align-self-center">
-          One of three columns
-        </div>        
-        <p id="txt" class="display-5"></p> 
-        <div class="col-sm-6 col-sm-9 p-2"> 
-          <form class="form-floating">
-              <input type="text" class="form-control" id="cityNameValue" placeholder="Toronto">
-              <label for="cityNameValue">What city would you like to check the weather?</label>
-          </form>
+    </nav>-->
+    <div class="bg-info-subtle">
+      <div class="row g-1 p-1">   
+          <!--Display Logo-->
+          <div class="col-6 col-sm-6 col-md-6 p-0"> 
+            <a href="index.html">
+                <img src="images/logo.svg" alt="Logo" width="50%" height="auto">
+            </a>
+          </div>
+          <!--Display Clock-->       
+          <div class="col-6 col-sm-6 col-md-6 bs-info-text-emphasis">          
+            <p id="txt" class="display-1 text-center"></p> 
+          </div>
+
+        <div class="row">
+          <!--Text box for search city weather-->
+          <div class="col-12 col-sm-9 col-md-10 p-1 g-1 d-grid gap-1">
+            <form class="shadow-sm form-floating">
+                <input type="text" class="form-control" id="cityNameValue" placeholder="Toronto">
+                <label for="cityNameValue">Search City</label>
+            </form>
+          </div>
+
+          <!--Button for search-->
+          <div class="col-12 col-sm-3 col-md-2 p-1 g-1 d-grid gap-1">
+              <button id="checkWeather" type="button" class="shadow-sm btn btn-outline-primary" data-bs-toggle="collapse" href="#weatherInfo" aria-expanded="true" aria-controls="weatherInfo">Search</button> <!-- onclick="checkWeather()"-->           
+          </div>
+        </div> 
+      </div>
+
+      <!--Collapsable Weather Information with the specific City-->
+      <div class="container-sm collapse" id="weatherInfo">
+        <div class="shadow-lg card card-body opacity-90 lh-1">
+          <h1 class="display-6">Weather Update Today!</h1>
+          <p id="temperature" class="display-1 fw-bold"></p>          
+          <p id="feels_like" class="fs-6"></p>         
+          <p id="temp_min_max" class="fs-6"></p>         
+          <p id="weather" class="fs-4"></p>
         </div>
-        <div class="col-sm-6 col-md-3 p-1 d-grid gap-2">
-            <button id="checkWeather" type="button" class="btn btn-outline-primary" data-bs-toggle="collapse" href="#collapseExample" aria-expanded="true" aria-controls="collapseExample">Search</button> <!-- onclick="checkWeather()"-->           
+
+        <!--Humidity, Pressure, and Wind Infor Card Display-->
+        <div class="row row-cols-3 row-cols-sm-3 p-2 g-2 lh-1">
+          <div class="col">
+            <div class="card">
+              <img src="images/humidity.svg" class="card-img-bottom" alt="humidity icon" width="50%" height="auto">
+              <div class="card-body">
+                <p id="humidityInfo" class="card-title text-center fs-6 fw-bold"></p>                
+                <p class="card-title text-center fs-6">Humidity</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <img src="images/wind.svg" class="card-img-bottom" alt="wind icon" width="50%" height="auto">
+              <div class="card-body">
+                <p id="windInfo" class="card-title text-center fs-6 fw-bold"></p>                
+                <p class="card-title text-center fs-6">Wind</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <img src="images/pressure.svg" class="card-img-bottom" alt="pressure icon" width="50%" height="auto">
+              <div class="card-body">
+                <p id="pressureInfo" class="card-title text-center fs-6 fw-bold"></p>                
+                <p class="card-title text-center fs-6">Pressure</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div> 
-      <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-          <h1 class="display-1">Weather Update Today!</h1>
-          <time datetime="2024-02-22 08:30:45"></time>
-          <p id="demo" class="display-3"></p>
-        </div>
-      </div>     
+      </div>
     </div>
     <script src="scripts/currentTime.js"></script>
     <script src="scripts/weather.js"></script>

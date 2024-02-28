@@ -3,7 +3,6 @@ let longitude = 0;
 $(document).ready(function(){
     $('#checkWeather').click(function(){
         var cityName = $("#cityNameValue").val();
-        //console.log(cityName);
         if(cityName != ''){
             $.ajax({
                 url: 'https://api.openweathermap.org/data/2.5/weather?q='+cityName+"&units=metric"
@@ -24,16 +23,23 @@ $(document).ready(function(){
                     document.getElementById("humidityInfo").innerHTML = data.main.humidity + "%";
                     document.getElementById("windInfo").innerHTML = Math.round(data.wind.speed) +" m/s";
                     document.getElementById("pressureInfo").innerHTML = data.main.pressure + " hPa";
+                    document.getElementById("forecast-today-temp1").innerHTML = Math.round(data.main.temp) +"&deg;C";
 
                     $.ajax({                        
-                        url: 'api.openweathermap.org/data/2.5/forecast?lat='+ latitude +'&lon='+ longitude +
+                        url: 'https://api.openweathermap.org/data/2.5/forecast?lat='+ latitude +'&lon='+ longitude + "&units=metric" +
                         "&appid=0e091e0fdbc8134a1400945ac6046033",
                         type: 'GET',
                         dataType: 'jsonp',
                         success: function(data){
                             console.log(data);
+                            document.getElementById("forecast-today-temp2").innerHTML = Math.round(data.list[1].main.temp) +"&deg;C";
+                            document.getElementById("forecast-today-temp3").innerHTML = Math.round(data.list[2].main.temp) +"&deg;C";
+                            document.getElementById("forecast-hour1").innerHTML = "11 AM";
+                            document.getElementById("forecast-hour2").innerHTML = "12 PM";
+                            document.getElementById("forecast-hour3").innerHTML = "1 PM";
                         }
                     });
+                    //document.getElementById("#cityNameValue").value = '';
                 }
             });
         }else{

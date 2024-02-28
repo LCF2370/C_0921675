@@ -24,10 +24,10 @@
         </div>   
   
         <div class="row p-0 g-0 sticky-top bg-info-subtle">
-          <div class="col-1 col-sm-2 col-md-2 p-2 g-2 col-lg-3">
+          <div class="col-1 col-sm-2 col-md-2 col-lg-3 p-2 g-2">
           </div>
 
-          <div class="col-10 col-sm-8 col-md-8 p-2 g-2 col-lg-6 rounded-pill">
+          <div class="col-10 col-sm-8 col-md-8 col-lg-6 p-2 g-2 rounded-pill">
             <div class="row p-2 g-2 bg-info bg-opacity-50 shadow-sm rounded-pill">
               <!--Text box for search city weather-->
               <div class="col-8 col-sm-9 col-md-10 p-0 g-0 d-grid gap-1">
@@ -51,10 +51,10 @@
         <!--Collapsable Weather Information with the specific City-->
         <div class="container-sm p-1 g-1" id="weatherInfo">
           <div class="row p-0 g-0">
-            <div class="col-0 col-sm-1 col-md-1 col-lg-2 p-1 g-1">              
+            <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">              
             </div> 
-            <div class="col-12 col-sm-10 col-md-10 col-lg-8 bg-info bg-opacity-50 p-1 g-1 rounded-1">  
-              <div class="shadow-lg card card-body p-2 g-2 lh-1 rounded-1">
+            <div class="col-12 col-sm-10 col-md-10 col-lg-10 bg-info bg-opacity-50 p-1 g-1 rounded-1">  
+              <div class="shadow-lg card card-body p-2 g-3 lh-1 rounded-1">
                 <h1 class="display-6">Weather Update Today!</h1>         
                 <p id="city_country" class="fs-2"></p>
                 <p id="temperature" class="display-1 fw-bold"></p>          
@@ -62,64 +62,75 @@
                 <p id="temp_min_max" class="fs-6"></p>         
                 <p id="weather" class="fs-4"></p>
               </div>
+              <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">              
+              </div> 
 
               <!--Humidity, Pressure, and Wind Infor Card Display-->  
-              <div class="h-50 row row-cols-3 row-cols-sm-3 p-2 g-1 text-end fs-6">
-                <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-                  <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                      <div class="col-md-4">
-                        <img src="images/humidity.svg" class="img-fluid rounded-start" alt="humidity icon">
+              <div class="h-100 row row-cols-3 row-cols-sm-3 p-2 g-1 text-center fs-6">
+                <div class="d-none d-sm-block col-0 col-sm-1 col-md-1 col-lg-1"></div>
+                <div class="col-12 col-sm-10 col-md-10 col-lg-10">
+                    <div class="row row-cols-3 w-100 g-0">                      
+                      <!--Card 1-->
+                      <div class="col-4 col-sm-4 col-md-4 col-lg-4  bg-opacity-75">
+                        <div class="card mb-3" style="max-width: 540px;">
+                          <div class="row g-0">
+                            <div class="col-md-4">
+                              <img src="images/humidity.svg" class="img-fluid rounded-start" alt="humidity icon">
+                            </div>
+                            <div class="col-md-8">
+                              <div class="card-body">
+                                <h5 id="humidityInfo" class="card-title"></h5>
+                                <p class="card-text">Humidity</p>
+                                <!--
+                                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>-->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 id="humidityInfo" class="card-title"></h5>
-                          <p class="card-text">Humidity</p>
-                          <!--
-                          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>-->
+                      <!--Card 2-->
+                      <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
+                        <div class="card mb-3" style="max-width: 540px;">
+                          <div class="row g-0">
+                            <div class="col-md-4">
+                              <img src="images/wind.svg" class="img-fluid rounded-start" alt="wind icon">
+                            </div>
+                            <div class="col-md-8">
+                              <div class="card-body">
+                                <h5 id="windInfo" class="card-title">Card title</h5>
+                                <p class="card-text">Wind</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--Card 3-->
+                      <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
+                        <div class="card mb-3" style="max-width: 540px;">
+                          <div class="row g-0">
+                            <div class="col-md-4">
+                              <img src="images/pressure.svg" class="img-fluid rounded-start" alt="pressure icon">
+                            </div>
+                            <div class="col-md-8">
+                              <div class="card-body">
+                                <h5 id="pressureInfo" class="card-title"></h5>
+                                <p class="card-text">Pressure</p>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
                 </div>
-                <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-                  <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                      <div class="col-md-4">
-                        <img src="images/wind.svg" class="img-fluid rounded-start" alt="wind icon">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 id="windInfo" class="card-title">Card title</h5>
-                          <p class="card-text">Wind</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-                  <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                      <div class="col-md-4">
-                        <img src="images/pressure.svg" class="img-fluid rounded-start" alt="pressure icon">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 id="pressureInfo" class="card-title"></h5>
-                          <p class="card-text">Pressure</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <div class="d-none d-sm-block col-0 col-sm-1 col-md-1 col-lg-1"></div>
               </div>
                         
             </div> 
-            <div class="col-0 col-sm-1 col-md-1 col-lg-2 p-1 g-1">              
-            </div> 
-          </div> 
+          </div>
+
+          <!--Weather forecast 5days/3hrs--> 
           <div class="row p-0 g-0">
-            <div class="col-0 col-sm-1 col-md-1 col-lg-2 p-1 g-1">              
+            <div class="col-0 col-sm-1 col-md-1 col-lg-2 p-1 g-0">              
             </div> 
             <div class="col-12 col-sm-10 col-md-10 col-lg-8 bg-info bg-opacity-50 p-1 g-1 rounded-1">
               <div id="carouselExampleDark" class="carousel carousel-dark slide">
@@ -130,10 +141,69 @@
               </div>
               <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="10000">
-                  <img src="images/logo.svg" class="d-block w-50" alt="...">
-                  <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
+                  <div id="row">
+                    <div class="d-none d-md-block col-12 col-sm-12 col-md-12 col-lg-12 text-center bg-info-subtle bg-opacity-25 p-1 g-1 rounded-1">
+                      <p class="card-title display-5">Hourly Forecast</p>
+                    </div>
+                  </div>
+                  <div class="h-100 row row-cols-3 row-cols-sm-3 p-2 g-1 text-center fs-6">
+                    <!--3 Hour Forecast-->
+                    <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>
+                    <div class="col-10 col-sm-10 col-md-10 col-lg-10">
+                        <div class="row row-cols-3 w-100 g-0">                      
+                          <!--Forecast 1-->
+                          <div class="col-4 col-sm-4 col-md-4 col-lg-4  bg-opacity-75">
+                            <div class="card mb-3" style="max-width: 900px;">
+                              <div class="row g-0">
+                                <div class="col-md-4">
+                                  <p class="card-title display-1">*</p>
+                                </div>
+                                <div class="col-md-8">
+                                  <div class="card-body">
+                                    <h5 id="forecast-today-temp1" class="card-title"></h5>
+                                    <p id="forecast-hour1" class="card-text">Humidity</p>
+                                    <!--<p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>-->
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!--Forecast 2-->
+                          <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
+                            <div class="card mb-3" style="max-width: 900px;">
+                              <div class="row g-0">
+                                <div class="col-md-4">
+                                  <p class="card-title display-1">*</p>
+                                </div>
+                                <div class="col-md-8">
+                                  <div class="card-body">
+                                    <h5 id="forecast-today-temp2" class="card-title"></h5>
+                                    <p id="forecast-hour2" class="card-text">Wind</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!--Forecast 3-->
+                          <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
+                            <div class="card mb-3" style="max-width: 900px;">
+                              <div class="row g-0">
+                                <div class="col-md-4">
+                                  <p class="card-title display-1">*</p>
+                                </div>
+                                <div class="col-md-8">
+                                  <div class="card-body">
+                                    <h5 id="forecast-today-temp3" class="card-title"></h5>
+                                    <p id="forecast-hour3" class="card-text">Pressure</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>                    
+                    <!--3 Hour Forecast-->
                   </div>
                 </div>
                 <div class="carousel-item" data-bs-interval="2000">
@@ -163,7 +233,8 @@
             </div>
             <div class="col-0 col-sm-1 col-md-1 col-lg-2 p-1 g-1">              
             </div> 
-          </div>         
+          </div>
+
         </div>
         
       </div>
@@ -182,3 +253,24 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
+
+<!--3 column cards
+<div class="col-1 col-sm-1 col-md-1 col-lg-1 bg-info"></div>
+<div class="col-10 col-sm-10 col-md-10 col-lg-10">
+    <div class="row row-cols-3 w-100 g-0">                      
+      <!--Card 1
+      <div class="col-3 col-sm-4 col-md-4 col-lg-4  bg-opacity-75">
+        <!--insert here
+      </div>
+      <!--Card 2
+      <div class="col-3 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
+        <!--insert here
+      </div>
+      <!--Card 3
+      <div class="col-3 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
+        <!--insert here
+      </div>
+    </div>
+</div>
+<div class="col-1 col-sm-1 col-md-1 col-lg-1 bg-info"></div>                    
+-->

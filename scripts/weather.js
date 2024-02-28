@@ -19,7 +19,6 @@ $(document).ready(function(){
                     document.getElementById("humidityInfo").innerHTML = data.main.humidity + "%";
                     document.getElementById("windInfo").innerHTML = Math.round(data.wind.speed) +" m/s";
                     document.getElementById("pressureInfo").innerHTML = data.main.pressure + " hPa";
-                    document.getElementById("time_zone").innerHTML = timeZone(data.sys.sunrise);
                 }
             });
         }else{
@@ -36,20 +35,6 @@ function initCap(str) {
     }
     return splitStr.join(' '); 
  }
-
-
-function timeZone(time_zone){
-    const today = new Date(time_zone);
-    let h = today.getHours();
-    let n = h - 12;
-    let m = today.getMinutes();
-    let s = today.getSeconds();
-    m = checkTime(m);
-    if(h >= 12){ var meridian = "PM"}
-    else{ var meridian = "AM"}
-    setTimeout(timeZone, 1000);
-    return n + ":" + m + " " + meridian;
-}
 
 function checkTime(i) {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10

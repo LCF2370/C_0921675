@@ -18,89 +18,106 @@
     </nav>-->
     <main role="main" class="container bs-info-text-emphasis">
       <div class="row justify-content-center">
-        <div class="row row justify-content-center g-1 p-1">
-          <div class="row">
-            <div class="col"></div>   
+        <div class="row g-0 p-0">
+          <div class="row p-1 g-1">
+            <div class="col-2 col-sm-4 col-md-3 col-lg-5"></div>   
             <!--Display Logo-->
-            <div class="col-xl-4 col-sm-4 col-md-4 p-0">
+            <div class="col-8 col-sm-4 col-md-6 col-lg-2 rounded-circle">
               <img src="images/logo.svg" class="card-img-bottom" alt="Logo" width="auto" height="auto">
-              <p id="txt" class="display-1 text-center"></p> 
+              <p id="txt" class="fs-1 text-center"></p> 
             </div>
-            <div class="col"></div> 
-            <!--Display Clock  
-            <div class="col-6 col-sm-6 col-md-6 bs-info-text-emphasis bg-info">          
-              <p id="txt" class="display-1 text-end"></p> 
-            </div>-->  
-          </div>   
+            <div class="col-2 col-sm-4 col-md-3 col-lg-5"></div>
+          </div>
+        </div>   
   
-          <div class="row p-2 g-2">
-            <div class="col-2 col-sm-2 col-md-2 p-2 g-2">
-            </div>
+        <div class="row p-0 g-0 sticky-top bg-info-subtle">
+          <div class="col-1 col-sm-2 col-md-2 p-2 g-2 col-lg-3">
+          </div>
 
-            <div class="col-8 col-sm-8 col-md-8 p-2 g-2 rounded-pill">
-              <div class="row p-2 g-2 bg-info shadow-sm rounded-pill">
-                <!--Text box for search city weather-->
-                <div class="col-12 col-sm-9 col-md-10 p-0 g-0 d-grid gap-1">
-                  <form class="form-floating">
-                      <input type="text" class="form-control rounded-start-pill" id="cityNameValue" placeholder="Toronto">
-                      <label for="cityNameValue">Search City</label>
-                  </form>
-                </div>
-      
-                <!--Button for search-->
-                <div class="col-12 col-sm-3 col-md-2 p-0 g-0 d-grid gap-1">
-                    <button id="checkWeather" type="button" class="shadow-sm btn btn-outline-primary rounded-end-pill" data-bs-toggle="collapse" href="#weatherInfo" aria-expanded="true" aria-controls="weatherInfo">Search</button> <!-- onclick="checkWeather()"-->           
-                </div>
-              </div>              
-            </div>
+          <div class="col-10 col-sm-8 col-md-8 p-2 g-2 col-lg-6 rounded-pill">
+            <div class="row p-2 g-2 bg-info bg-opacity-50 shadow-sm rounded-pill">
+              <!--Text box for search city weather-->
+              <div class="col-8 col-sm-9 col-md-10 p-0 g-0 d-grid gap-1">
+                <form class="form-floating">
+                    <input type="text" class="form-control rounded-start-pill" id="cityNameValue" placeholder="Toronto">
+                    <label for="cityNameValue">Search City</label>
+                </form>
+              </div>
+    
+              <!--Button for search-->
+              <div class="col-4 col-sm-3 col-md-2 p-0 g-0 d-grid gap-1">
+                  <button id="checkWeather" type="button" class="shadow-sm btn btn-outline-primary rounded-end-pill" data-bs-toggle="collapse" href="#weatherInfo" aria-expanded="true" aria-controls="weatherInfo">Search</button> <!-- onclick="checkWeather()"-->           
+              </div>
+            </div>              
+          </div>
 
-            <div class="col-2 col-sm-2 col-md-2 p-2 g-2">              
-            </div>            
-          </div> 
-        </div>
+          <div class="col-1 col-sm-2 col-md-2 col-lg-3 p-2 g-2">              
+          </div>            
+        </div> 
   
         <!--Collapsable Weather Information with the specific City-->
-        <div class="container-sm collapse bg-info p-2 g-2 round-4" id="weatherInfo">
-          <div class="shadow-lg card card-body opacity-90 p-4 g-2 lh-1">
-            <h1 class="display-6">Weather Update Today!</h1>         
-            <p id="city_country" class="fs-2"></p>
-            <p id="temperature" class="display-1 fw-bold"></p>          
-            <p id="feels_like" class="fs-6"></p>         
-            <p id="temp_min_max" class="fs-6"></p>         
-            <p id="weather" class="fs-4"></p>         
-            <p id="time_zone" class="fs-4"></p>
-          </div>
-  
-          <!--Humidity, Pressure, and Wind Infor Card Display-->
-          <div class="row row-cols-3 row-cols-sm-3 p-2 g-2 lh-1">
-            <div class="col">
-              <div class="card">
-                <img src="images/humidity.svg" class="card-img-bottom" alt="humidity icon" width="50%" height="auto">
-                <div class="card-body">
-                  <p id="humidityInfo" class="card-title text-center fs-6 fw-bold"></p>                
-                  <p class="card-title text-center fs-6">Humidity</p>
-                </div>
+        <div class="container-sm collapse p-1 g-1" id="weatherInfo">
+          <div class="row p-0 g-0">
+            <div class="col-0 col-sm-1 col-md-1 col-lg-2 p-1 g-1">              
+            </div> 
+            <div class="col-12 col-sm-10 col-md-10 col-lg-8 bg-info bg-opacity-50 p-1 g-1 rounded-1">  
+              <div class="shadow-lg card card-body p-2 g-2 lh-1 rounded-1">
+                <h1 class="display-6">Weather Update Today!</h1>         
+                <p id="city_country" class="fs-2"></p>
+                <p id="temperature" class="display-1 fw-bold"></p>          
+                <p id="feels_like" class="fs-6"></p>         
+                <p id="temp_min_max" class="fs-6"></p>         
+                <p id="weather" class="fs-4"></p>
               </div>
-            </div>
-            <div class="col">
-              <div class="card">
-                <img src="images/wind.svg" class="card-img-bottom" alt="wind icon" width="50%" height="auto">
-                <div class="card-body">
-                  <p id="windInfo" class="card-title text-center fs-6 fw-bold"></p>                
-                  <p class="card-title text-center fs-6">Wind</p>
+              <div class="row p-0 g-0">
+                <div class="col-2 col-sm-2 col-md-2 col-lg-2 p-0 g-0 bg-info"></div>
+                <div class="col-8 col-sm-4 col-md-4 col-lg-4 p-0 g-0 bg-info">
+                  <div class="col-4 col-sm-4 col-md-4 col-lg-4 p-0 g-0 bg-info">
+                    <img src="images/pressure.svg" class="card-img-bottom" alt="pressure icon" width="auto" height="auto">
+                  </div>
+                  <div class="col-4 col-sm-4 col-md-4 col-lg-4 p-0 g-0"> 
+                    <img src="images/pressure.svg" class="card-img-bottom" alt="pressure icon" width="auto" height="auto">
+                  </div>
+                  <div class="col-4 col-sm-4 col-md-4 col-lg-4 p-0 g-0 bg-info"> 
+                    <img src="images/pressure.svg" class="card-img-bottom" alt="pressure icon" width="auto" height="auto">
+                  </div>
                 </div>
+                <div class="col-2 col-sm-2 col-md-2 col-lg-2 p-0 g-0 bg-info"></div>
               </div>
-            </div>
-            <div class="col">
-              <div class="card">
-                <img src="images/pressure.svg" class="card-img-bottom" alt="pressure icon" width="50%" height="auto">
-                <div class="card-body">
-                  <p id="pressureInfo" class="card-title text-center fs-6 fw-bold"></p>                
-                  <p class="card-title text-center fs-6">Pressure</p>
+              <!--Humidity, Pressure, and Wind Infor Card Display-->
+              <div class="h-50 row row-cols-3 row-cols-sm-3 p-0 g-0 text-center">
+                <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                  <div class="card">
+                    <img src="images/humidity.svg" class="card-img-top" alt="humidity icon" width="auto" height="auto">
+                    <div class="card-body">
+                      <p id="humidityInfo" class="card-title text-center fs-6 fw-bold"></p>                
+                      <p class="card-title fs-6">Humidity</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
+                <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                  <div class="card">
+                    <img src="images/wind.svg" class="card-img-bottom" alt="wind icon" width="auto" height="auto">
+                    <div class="card-body">
+                      <p id="windInfo" class="card-title text-center fs-6 fw-bold"></p>                
+                      <p class="card-title fs-6">Wind</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                  <div class="card">
+                    <img src="images/pressure.svg" class="card-img-bottom" alt="pressure icon" width="auto" height="auto">
+                    <div class="card-img-overlay">
+                      <p id="pressureInfo" class="card-title text-center fs-6 fw-bold"></p>                
+                      <span class="fs-6">Pressure</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>            
+            </div> 
+            <div class="col-0 col-sm-1 col-md-1 col-lg-2 p-1 g-1">              
+            </div> 
+          </div>          
         </div>
       </div>
     </main>

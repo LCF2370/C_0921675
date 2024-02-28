@@ -11,6 +11,7 @@ $(document).ready(function(){
                 success: function(data){                    
                     let weather = initCap(data.weather[0].description);
                     console.log(data);
+                    document.getElementById("weatherInfo").style.display = "block";
                     document.getElementById("city_country").innerHTML = data.name + ", " +data.sys.country;
                     document.getElementById("temperature").innerHTML = Math.round(data.main.temp) +"&deg;C"; 
                     document.getElementById("feels_like").innerHTML = "Feels Like " + Math.round(data.main.feels_like) +"&deg;C";

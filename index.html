@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Weather Forecast</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body class="bg-info-subtle" onload="localTime()">
@@ -46,7 +47,7 @@
     
               <!--Button for search-->
               <div class="col-4 col-sm-3 col-md-2 p-0 g-0 d-grid gap-1">
-                  <button id="checkWeather" type="button" class="shadow-sm btn btn-outline-primary rounded-end-pill" data-bs-toggle="collapse" href="#weatherInfo" aria-expanded="true" aria-controls="weatherInfo">Search</button> <!-- onclick="checkWeather()"-->           
+                  <button id="checkWeather" type="button" class="shadow-sm btn btn-outline-primary rounded-end-pill" href="#weatherInfo">Search</button> <!-- onclick="checkWeather()"-->           
               </div>
             </div>              
           </div>
@@ -56,7 +57,7 @@
         </div> 
   
         <!--Collapsable Weather Information with the specific City-->
-        <div class="container-sm collapse p-1 g-1" id="weatherInfo">
+        <div class="container-sm p-1 g-1" id="weatherInfo">
           <div class="row p-0 g-0">
             <div class="col-0 col-sm-1 col-md-1 col-lg-2 p-1 g-1">              
             </div> 
@@ -69,51 +70,58 @@
                 <p id="temp_min_max" class="fs-6"></p>         
                 <p id="weather" class="fs-4"></p>
               </div>
-              <div class="row p-0 g-0">
-                <div class="col-2 col-sm-2 col-md-2 col-lg-2 p-0 g-0 bg-info"></div>
-                <div class="col-8 col-sm-4 col-md-4 col-lg-4 p-0 g-0 bg-info">
-                  <div class="col-4 col-sm-4 col-md-4 col-lg-4 p-0 g-0 bg-info">
-                    <img src="images/pressure.svg" class="card-img-bottom" alt="pressure icon" width="auto" height="auto">
-                  </div>
-                  <div class="col-4 col-sm-4 col-md-4 col-lg-4 p-0 g-0"> 
-                    <img src="images/pressure.svg" class="card-img-bottom" alt="pressure icon" width="auto" height="auto">
-                  </div>
-                  <div class="col-4 col-sm-4 col-md-4 col-lg-4 p-0 g-0 bg-info"> 
-                    <img src="images/pressure.svg" class="card-img-bottom" alt="pressure icon" width="auto" height="auto">
+              
+              <!--Humidity, Pressure, and Wind Infor Card Display-->  
+              <div class="h-50 row row-cols-3 row-cols-sm-3 p-0 g-0 text-end fs-6">
+                <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                  <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="images/humidity.svg" class="img-fluid rounded-start" alt="humidity icon">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 id="humidityInfo" class="card-title"></h5>
+                          <p class="card-text">Humidity</p>
+                          <!--
+                          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>-->
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="col-2 col-sm-2 col-md-2 col-lg-2 p-0 g-0 bg-info"></div>
+                <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                  <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="images/wind.svg" class="img-fluid rounded-start" alt="wind icon">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 id="windInfo" class="card-title">Card title</h5>
+                          <p class="card-text">Wind</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                  <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img src="images/pressure.svg" class="img-fluid rounded-start" alt="pressure icon">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 id="pressureInfo" class="card-title"></h5>
+                          <p class="card-text">Pressure</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <!--Humidity, Pressure, and Wind Infor Card Display-->
-              <div class="h-50 row row-cols-3 row-cols-sm-3 p-0 g-0 text-center">
-                <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-                  <div class="card">
-                    <img src="images/humidity.svg" class="card-img-top" alt="humidity icon" width="auto" height="auto">
-                    <div class="card-body">
-                      <p id="humidityInfo" class="card-title text-center fs-6 fw-bold"></p>                
-                      <p class="card-title fs-6">Humidity</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-                  <div class="card">
-                    <img src="images/wind.svg" class="card-img-bottom" alt="wind icon" width="auto" height="auto">
-                    <div class="card-body">
-                      <p id="windInfo" class="card-title text-center fs-6 fw-bold"></p>                
-                      <p class="card-title fs-6">Wind</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-4 col-sm-4 col-md-4 col-lg-4">
-                  <div class="card">
-                    <img src="images/pressure.svg" class="card-img-bottom" alt="pressure icon" width="auto" height="auto">
-                    <div class="card-img-overlay">
-                      <p id="pressureInfo" class="card-title text-center fs-6 fw-bold"></p>                
-                      <span class="fs-6">Pressure</span></p>
-                    </div>
-                  </div>
-                </div>
-              </div>            
+                        
             </div> 
             <div class="col-0 col-sm-1 col-md-1 col-lg-2 p-1 g-1">              
             </div> 

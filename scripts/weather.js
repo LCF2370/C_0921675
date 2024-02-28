@@ -1,3 +1,5 @@
+let latitude = 0;
+let longitude = 0;
 $(document).ready(function(){
     $('#checkWeather').click(function(){
         var cityName = $("#cityNameValue").val();
@@ -5,12 +7,14 @@ $(document).ready(function(){
         if(cityName != ''){
             $.ajax({
                 url: 'https://api.openweathermap.org/data/2.5/weather?q='+cityName+"&units=metric"
-                +"&APPID=c10bb3bd22f90d636baa008b1529ee25",
+                +"&APPID=0e091e0fdbc8134a1400945ac6046033",
                 type: 'GET',
                 dataType: 'jsonp',
                 success: function(data){                    
                     let weather = initCap(data.weather[0].description);
                     console.log(data);
+                    latitude = data.coord.lat
+                    longitude = data.coord.lon
                     document.getElementById("weatherInfo").style.display = "block";
                     document.getElementById("city_country").innerHTML = data.name + ", " +data.sys.country;
                     document.getElementById("temperature").innerHTML = Math.round(data.main.temp) +"&deg;C"; 
@@ -20,10 +24,21 @@ $(document).ready(function(){
                     document.getElementById("humidityInfo").innerHTML = data.main.humidity + "%";
                     document.getElementById("windInfo").innerHTML = Math.round(data.wind.speed) +" m/s";
                     document.getElementById("pressureInfo").innerHTML = data.main.pressure + " hPa";
+
+                    $.ajax({                        
+                        url: 'api.openweathermap.org/data/2.5/forecast?lat='+ latitude +'&lon='+ longitude +
+                        "&appid=0e091e0fdbc8134a1400945ac6046033",
+                        type: 'GET',
+                        dataType: 'jsonp',
+                        success: function(data){
+                            console.log(data);
+                        }
+                    });
                 }
             });
         }else{
             $("#error").html('Field cannot be empty')
+            document.getElementById("weatherInfo").style.display = "none";
         }
 
     });

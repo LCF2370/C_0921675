@@ -1,13 +1,13 @@
 function localTime() {
     const today = new Date();
     let h = today.getHours();
-    let n = Math.abs(h - 12);
     let m = today.getMinutes();
     let s = today.getSeconds();
     m = checkTime(m);
-    if(h >= 12){ var meridian = "PM"}
+    if(h >= 12){ var meridian = "PM" }
     else{ var meridian = "AM"}
-    document.getElementById('localTime').innerHTML = n + ":" + m + " " + meridian; 
+    if(h > 12){ h=Math.abs(h - 12) }
+    document.getElementById('localTime').innerHTML = h + ":" + m + " " + meridian; 
     setTimeout(localTime, 1000);
   }
   

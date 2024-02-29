@@ -8,7 +8,7 @@
     <link href="css/styles.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
-  <body class="bg-info-subtle" onload="localTime()">
+  <body class="bg-info-subtle">
     <main role="main" class="container bs-info-text-emphasis">
       <div class="row justify-content-center">
         <div class="row g-0 p-0">
@@ -17,7 +17,6 @@
             <!--Display Logo-->
             <div class="col-8 col-sm-4 col-md-6 col-lg-2 rounded-circle">
               <img src="images/logo.svg" class="card-img-bottom" alt="Logo" width="auto" height="auto">
-              <p id="localTime" class="fs-1 text-center"></p> 
             </div>
             <div class="col-2 col-sm-4 col-md-3 col-lg-5"></div>
           </div>
@@ -53,15 +52,38 @@
           <div class="row p-0 g-0">
             <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">              
             </div> 
-            <div class="col-12 col-sm-10 col-md-10 col-lg-10 bg-info bg-opacity-50 p-1 g-1 rounded-1">  
-              <div class="shadow-lg card card-body p-2 g-3 lh-1 rounded-1">
-                <h1 class="display-6">Weather Update Today!</h1>         
+            <div class="col-12 col-sm-10 col-md-10 col-lg-10 bg-info bg-opacity-50 p-1 g-1 rounded-1">
+              <div class="card text-bg-dark">
+                <img src="images/sunrise-mountain.svg" class="card-img" alt="sunrise mountain">
+                <div class="card-img-overlay">
+                    <h5 id="temperature" class="card-title display-1">Card title</h5>
+                                      
+                    <p id="weather-info-1" class="card-text"></p>
+                  <!--
+                    <p id="weather-info-2" class="card-text"></p>
+                    <p class="card-text">Weather Update Today!</p>
+                    <p id="city_country" class="card-title"></p>      
+                    <p id="time_zone_country" class="card-text"></p>         
+                    <p id="feels_like" class="card-text"></p>         
+                    <p id="temp_min_max" class="card-text"></p>         
+                    <p id="weather" class="card-text"></p>-->
+                </div>
+              </div>  
+              <!--<div class="shadow-lg card card-body p-2 g-3 lh-1 rounded-1">
+                <h1 class="display-6">Weather Update Today!</h1>
+                <figure>
+                  <blockquote class="blockquote">
+                    <p id="city_country" class="fs-1"></p>
+                  </blockquote>
+                  <figcaption id="time_zone_country" class="blockquote-footer">                    
+                  </figcaption>
+                </figure>         
                 <p id="city_country" class="fs-2"></p>
                 <p id="temperature" class="display-1 fw-bold"></p>          
                 <p id="feels_like" class="fs-6"></p>         
                 <p id="temp_min_max" class="fs-6"></p>         
                 <p id="weather" class="fs-4"></p>
-              </div>
+              </div>-->
               <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">              
               </div> 
 
@@ -72,17 +94,15 @@
                     <div class="row row-cols-3 w-100 g-0">                      
                       <!--Card 1-->
                       <div class="col-4 col-sm-4 col-md-4 col-lg-4  bg-opacity-75">
-                        <div class="card mb-3" style="max-width: 540px;">
+                        <div class="card mb-3 rounded-5 rounded-end-0" style="max-width: 540px;">
                           <div class="row g-0">
                             <div class="col-md-4">
                               <img src="images/humidity.svg" class="img-fluid rounded-start" alt="humidity icon">
                             </div>
                             <div class="col-md-8">
                               <div class="card-body">
-                                <h5 id="humidityInfo" class="card-title"></h5>
+                                <h6 id="humidityInfo" class="card-title"></h6>
                                 <p class="card-text">Humidity</p>
-                                <!--
-                                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>-->
                               </div>
                             </div>
                           </div>
@@ -90,14 +110,14 @@
                       </div>
                       <!--Card 2-->
                       <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
-                        <div class="card mb-3" style="max-width: 540px;">
+                        <div class="card mb-3 rounded-0" style="max-width: 540px;">
                           <div class="row g-0">
                             <div class="col-md-4">
                               <img src="images/wind.svg" class="img-fluid rounded-start" alt="wind icon">
                             </div>
                             <div class="col-md-8">
                               <div class="card-body">
-                                <h5 id="windInfo" class="card-title">Card title</h5>
+                                <h6 id="windInfo" class="card-title">Card title</h6>
                                 <p class="card-text">Wind</p>
                               </div>
                             </div>
@@ -106,14 +126,14 @@
                       </div>
                       <!--Card 3-->
                       <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
-                        <div class="card mb-3" style="max-width: 540px;">
+                        <div class="card mb-3 rounded-5 rounded-start-0" style="max-width: 540px;">
                           <div class="row g-0">
                             <div class="col-md-4">
                               <img src="images/pressure.svg" class="img-fluid rounded-start" alt="pressure icon">
                             </div>
                             <div class="col-md-8">
                               <div class="card-body">
-                                <h5 id="pressureInfo" class="card-title"></h5>
+                                <h6 id="pressureInfo" class="card-title"></h6>
                                 <p class="card-text">Pressure</p>
                               </div>
                             </div>
@@ -142,8 +162,8 @@
               <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="10000">
                   <div id="row">
-                    <div class="d-none d-md-block col-12 col-sm-12 col-md-12 col-lg-12 text-center bg-info-subtle bg-opacity-25 p-1 g-1 rounded-1">
-                      <p class="card-title display-5">Hourly Forecast</p>
+                    <div class="border-info-subtle border-4 border-bottom d-none d-md-block col-12 col-sm-12 col-md-12 col-lg-12 text-center bg-info-subtle bg-opacity-0 p-1 g-1 rounded-0">
+                      <p class="card-title display-5">Weather Forecast</p>
                     </div>
                   </div>
                   <div class="h-100 row row-cols-3 row-cols-sm-3 p-2 g-1 text-center fs-6">
@@ -206,18 +226,39 @@
                     <!--3 Hour Forecast-->
                   </div>
                 </div>
+
+                <!--Other Information-->
                 <div class="carousel-item" data-bs-interval="2000">
-                  <img src="images/logo.svg" class="d-block w-50" alt="...">
-                  <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
+                  <div id="row">
+                    <div class="border-info-subtle border-4 border-bottom d-none d-md-block col-12 col-sm-12 col-md-12 col-lg-12 text-center bg-info-subtle bg-opacity-0 p-1 g-1 rounded-0">
+                      <p class="card-title display-5">Additional Information</p>
+                    </div>
+                  </div>
+                  <div class="h-100 row row-cols-3 row-cols-sm-3 p-2 g-1 text-end fs-6">
+                    <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>
+                    <div class="col-10 col-sm-10 col-md-10 col-lg-10">
+                        <div class="row w-100 g-0">
+                          <ul class="list-group list-group-flush">
+                            <li id="population" class="list-group-item"></li>
+                            <li id="ground_level" class="list-group-item"></li>
+                            <li id="sea_level" class="list-group-item"></li>
+                            <li id="visibility" class="list-group-item"></li>
+                            <li id="wind_direction" class="list-group-item"></li>
+                            <li class="list-group-item"></li>
+                          </ul>
+                        </div>
+                    </div>
+                    <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>  
                   </div>
                 </div>
                 <div class="carousel-item">
-                  <img src="images/logo.svg" class="d-block w-50" alt="...">
-                  <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the third slide.</p>
+                  <div class="card text-bg-dark">
+                    <img src="images/sunset-ocean.svg" class="d-block w-100" alt="Sunset Ocean">
+                    <div class="card-img-overlay">
+                      <h5 class="card-title">Weather Direct</h5>
+                      <p class="card-text">Software Developer: Ralph Eimerson B. Ompoc</p>
+                      <p class="card-text"><small>Front-End Web Development II Project</small></p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -248,29 +289,7 @@
       </div>
     </footer>
 
-    <script src="scripts/currentTime.js"></script>
     <script src="scripts/weather.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
-
-<!--3 column cards
-<div class="col-1 col-sm-1 col-md-1 col-lg-1 bg-info"></div>
-<div class="col-10 col-sm-10 col-md-10 col-lg-10">
-    <div class="row row-cols-3 w-100 g-0">                      
-      <!--Card 1
-      <div class="col-3 col-sm-4 col-md-4 col-lg-4  bg-opacity-75">
-        <!--insert here
-      </div>
-      <!--Card 2
-      <div class="col-3 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
-        <!--insert here
-      </div>
-      <!--Card 3
-      <div class="col-3 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
-        <!--insert here
-      </div>
-    </div>
-</div>
-<div class="col-1 col-sm-1 col-md-1 col-lg-1 bg-info"></div>                    
--->

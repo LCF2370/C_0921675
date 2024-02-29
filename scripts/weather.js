@@ -36,9 +36,10 @@ $(document).ready(function(){
                     date.setHours(date.getUTCHours() + timezoneOffset);
                     var h = date.getHours();
                     var m = date.getMinutes();
-                    if(h >= 12){ var meridian = "PM" }
+                    var hr = h;
+                    if(hr >= 12){ var meridian = "PM" }
                     else{ var meridian = "AM"}
-                    if(h > 12){ h=Math.abs(h - 12) }
+                    if(hr > 12){ hr=Math.abs(hr - 12) }
 
                     //Unhide the weather information section
                     document.getElementById("weatherInfo").style.display = "block";
@@ -48,22 +49,48 @@ $(document).ready(function(){
                     *  weather, maximum temperature, minimum temperature, humidity, wind speed, pressure
                     */
                     document.getElementById("temperature").innerHTML = Math.round(data.main.temp) +"&deg;C";
-                    document.getElementById("weather-info-1").innerHTML = data.name + ", " +data.sys.country + "<br>" + "Feels Like " + Math.round(data.main.feels_like) +"&deg;C" + "<br>" + Math.round(data.main.temp_max) +"&deg;C" + " / " + Math.round(data.main.temp_min) +"&deg;C" + "<br>" +  weather + "<br>" + h + ":" + m + meridian;
+                    document.getElementById("weather-info-1").innerHTML = data.name + ", " +data.sys.country + "<br>" + "Feels Like " + Math.round(data.main.feels_like) +"&deg;C" + "<br>" + Math.round(data.main.temp_max) +"&deg;C" + " / " + Math.round(data.main.temp_min) +"&deg;C" + "<br>" +  weather + "<br>" + hr + ":" + m + meridian;
                     document.getElementById("humidityInfo").innerHTML = data.main.humidity + "%";
                     document.getElementById("windInfo").innerHTML = Math.round(data.wind.speed) +" m/s";
                     document.getElementById("pressureInfo").innerHTML = data.main.pressure + " hPa";
                     document.getElementById("forecast-today-temp1").innerHTML = Math.round(data.main.temp) +"&deg;C";
                     
                     //Creates an array of time forecast
-                    var timeZoneArray = [];
-                    for (var i = 0; i < 3; i++) {
+                    /**
                         if(h >= 12){ var meridian = "PM" }
                         else{ var meridian = "AM"}
                         if(h > 12){ h=Math.abs(h - 12) }
-                        let stringHour = h + " " + meridian;
+                         */
+                    var timeZoneArray = [];
+                    for (var i = 0; i < 3; i++) {
+                        let stringHour = h;
                         timeZoneArray.push(stringHour);
                         h += 3;
                     } 
+                    console.log(timeZoneArray);
+                    var meridianArray = [];
+                    for (var i = 0; i < 3; i++) {
+                        if(timeZoneArray[i] >= 12 && timeZoneArray[i] < 24){ 
+                            var meridian = "PM"; 
+                            var hrs = 0;                           
+                            if(timeZoneArray[i] > 12){ 
+                                hrs=Math.abs(timeZoneArray[i] - 12);
+                                let stringMeridian =hrs + " " + meridian;
+                                meridianArray.push(stringMeridian);
+                             }else{
+                                let stringMeridian =timeZoneArray[i] + " " + meridian;
+                                meridianArray.push(stringMeridian);
+                             }
+                        }else{ 
+                            var meridian = "AM";
+                            if(timeZoneArray[i] > 24){ hrs=Math.abs(timeZoneArray[i] - 24) }                           
+                            if(timeZoneArray[i] == 24){ hrs=Math.abs(timeZoneArray[i] - 12) }
+                            let stringMeridian = hrs + " " + meridian;
+                            meridianArray.push(stringMeridian);
+
+                        }
+                    } 
+                    console.log(timeZoneArray);
 
                     //Variable assigning a string value that includes city name and country acronym 
                     city = data.name + ", " +data.sys.country;
@@ -78,9 +105,9 @@ $(document).ready(function(){
                             */
                             document.getElementById("forecast-today-temp2").innerHTML = Math.round(data.list[1].main.temp) +"&deg;C";
                             document.getElementById("forecast-today-temp3").innerHTML = Math.round(data.list[2].main.temp) +"&deg;C";
-                            document.getElementById("forecast-hour1").innerHTML = timeZoneArray[0];
-                            document.getElementById("forecast-hour2").innerHTML = timeZoneArray[1];
-                            document.getElementById("forecast-hour3").innerHTML = timeZoneArray[2];
+                            document.getElementById("forecast-hour1").innerHTML = meridianArray[0];
+                            document.getElementById("forecast-hour2").innerHTML = meridianArray[1];
+                            document.getElementById("forecast-hour3").innerHTML = meridianArray[2];
                             document.getElementById("ground_level").innerHTML = data.list[1].main.grnd_level + " meters above mean sea level.";
                             document.getElementById("sea_level").innerHTML = data.list[1].main.sea_level + " meters above sea surface.";
                             document.getElementById("visibility").innerHTML = "Visibility radius is " + data.list[1].visibility + " meters.";

@@ -1,3 +1,12 @@
+/*
+ Student Name: Ralph Eimerson Ompoc
+ Student ID: c0921675
+ Date: February 28, 2024
+ */
+/*
+Default hiding the weather information section which is 
+<div id = 'weatherInfo'> tag in HTML file
+*/
 #weatherInfo{
     display: none;
 }

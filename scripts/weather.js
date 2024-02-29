@@ -57,6 +57,9 @@ $(document).ready(function(){
                     //Creates an array of time forecast
                     var timeZoneArray = [];
                     for (var i = 0; i < 3; i++) {
+                        if(h >= 12){ var meridian = "PM" }
+                        else{ var meridian = "AM"}
+                        if(h > 12){ h=Math.abs(h - 12) }
                         let stringHour = h + " " + meridian;
                         timeZoneArray.push(stringHour);
                         h += 3;

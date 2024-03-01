@@ -70,27 +70,46 @@ $(document).ready(function(){
                     console.log(timeZoneArray);
                     var meridianArray = [];
                     for (var i = 0; i < 3; i++) {
-                        if(timeZoneArray[i] >= 12 && timeZoneArray[i] < 24){ 
+                        if (timeZoneArray[i] > 0 && timeZoneArray[i] < 12){
+                            var meridian = "AM";
+                            let stringMeridian = timeZoneArray[i] + " " + meridian;
+                            meridianArray.push(stringMeridian); 
+                        }
+                        else if(timeZoneArray[i] >= 12 && timeZoneArray[i] < 24){ 
                             var meridian = "PM"; 
                             var hrs = 0;                           
                             if(timeZoneArray[i] > 12){ 
                                 hrs=Math.abs(timeZoneArray[i] - 12);
+                                console.log(hrs);
                                 let stringMeridian =hrs + " " + meridian;
                                 meridianArray.push(stringMeridian);
                              }else{
                                 let stringMeridian =timeZoneArray[i] + " " + meridian;
                                 meridianArray.push(stringMeridian);
                              }
-                        }else{ 
+                        }
+                        else{ 
                             var meridian = "AM";
-                            if(timeZoneArray[i] > 24){ hrs=Math.abs(timeZoneArray[i] - 24) }                           
-                            if(timeZoneArray[i] == 24){ hrs=Math.abs(timeZoneArray[i] - 12) }
-                            let stringMeridian = hrs + " " + meridian;
-                            meridianArray.push(stringMeridian);
-
+                            if(timeZoneArray[i] > 24){ 
+                                hrs=Math.abs(timeZoneArray[i] - 24);
+                                console.log(hrs);
+                                let stringMeridian = hrs + " " + meridian;
+                                meridianArray.push(stringMeridian); 
+                            }                           
+                            else if(timeZoneArray[i] == 24){
+                                hrs=Math.abs(timeZoneArray[i] - 12);
+                                console.log(hrs);
+                                let stringMeridian = hrs + " " + meridian;
+                                meridianArray.push(stringMeridian);
+                            }
+                            else{
+                                let stringMeridian = timeZoneArray[i] + " " + meridian;
+                                meridianArray.push(stringMeridian);
+                            }
                         }
                     } 
                     console.log(timeZoneArray);
+                    console.log(meridianArray);
 
                     //Variable assigning a string value that includes city name and country acronym 
                     city = data.name + ", " +data.sys.country;

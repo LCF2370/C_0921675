@@ -70,10 +70,16 @@ $(document).ready(function(){
                     console.log(timeZoneArray);
                     var meridianArray = [];
                     for (var i = 0; i < 3; i++) {
-                        if (timeZoneArray[i] > 0 && timeZoneArray[i] < 12){
+                        if (timeZoneArray[i] >= 0 && timeZoneArray[i] < 12){
                             var meridian = "AM";
-                            let stringMeridian = timeZoneArray[i] + " " + meridian;
-                            meridianArray.push(stringMeridian); 
+                            if(timeZoneArray[i] >= 0 && timeZoneArray[i] < 10){                                
+                                let stringMeridian = "0" + timeZoneArray[i] + " " + meridian;
+                                meridianArray.push(stringMeridian); 
+                            }
+                            else{                                
+                                let stringMeridian = timeZoneArray[i] + " " + meridian;
+                                meridianArray.push(stringMeridian); 
+                            }
                         }
                         else if(timeZoneArray[i] >= 12 && timeZoneArray[i] < 24){ 
                             var meridian = "PM"; 
@@ -84,8 +90,14 @@ $(document).ready(function(){
                                 let stringMeridian =hrs + " " + meridian;
                                 meridianArray.push(stringMeridian);
                              }else{
-                                let stringMeridian =timeZoneArray[i] + " " + meridian;
-                                meridianArray.push(stringMeridian);
+                                if(timeZoneArray[i] >= 0 && timeZoneArray[i] < 10){
+                                    let stringMeridian ="0" + timeZoneArray[i] + " " + meridian;
+                                    meridianArray.push(stringMeridian);
+                                }
+                                else{
+                                    let stringMeridian =timeZoneArray[i] + " " + meridian;
+                                    meridianArray.push(stringMeridian);                                    
+                                }
                              }
                         }
                         else{ 

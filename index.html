@@ -58,7 +58,7 @@
         <div class="container-sm p-1 g-1" id="weatherInfo">
           <!--1st sub-section displaying the most important weather information.-->
           <div class="row p-0 g-0">
-            <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">              
+            <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">           
             </div> 
             <div class="col-12 col-sm-10 col-md-10 col-lg-10 bg-info bg-opacity-50 p-1 g-1 rounded-1">
               <div class="card text-bg-dark">
@@ -68,8 +68,6 @@
                     <p id="weather-info-1" class="card-text"></p>
                 </div>
               </div>
-              <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">              
-              </div> 
 
               <!--2nd sub-section for additional information like Humidity, Wind Speed, and Pressure Infor Card Display-->  
               <div class="h-100 row row-cols-3 row-cols-sm-3 p-2 g-1 text-center fs-6">
@@ -127,15 +125,28 @@
                     </div>
                 </div>
                 <div class="d-none d-sm-block col-0 col-sm-1 col-md-1 col-lg-1"></div>
-              </div>                        
+              </div>            
+            </div> 
+            <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">
             </div> 
           </div>
+              
+          <!--Random pictures using unsplash API.
+          <div class="row p-0 g-0">
+            <div class="col-1 col-sm-2 col-md-2 col-lg-2 p-1 g-0">              
+            </div> 
+            <div class="col-10 col-sm-8 col-md-8 col-lg-8 p-1 g-1">             
+              <img id="randomImage" src="" class="img-thumbnail float-end rounded-pill"  alt="Random Image">
+            </div>
+            <div class="col-1 col-sm-2 col-md-2 col-lg-2 p-1 g-0">              
+            </div> 
+          </div>-->
 
           <!--3rd sub-section with more information to display in --> 
           <div class="row p-0 g-0">
             <div class="col-0 col-sm-1 col-md-1 col-lg-2 p-1 g-0">              
             </div> 
-            <div class="col-12 col-sm-10 col-md-10 col-lg-8 bg-info bg-opacity-50 p-1 g-1 rounded-1">
+            <div class="col-12 col-sm-10 col-md-10 col-lg-10 bg-info bg-opacity-50 p-1 g-1 rounded-1">
               <div id="carouselExampleDark" class="carousel carousel-dark slide">
               <!--User interface from bootstrap layout which is a button to slide/carousel from left or right to view more information-->
               <div class="carousel-indicators">
@@ -235,10 +246,14 @@
                   </div>
                 </div>
 
+                <!--STOPPED HERE: April 2, 2024 at 9:09PM 
+                                  Working on random images with unsplash api-->
+
                 <!--3rd slide: Other information user-->
                 <div class="carousel-item">
-                  <div class="card text-bg-dark">
-                    <img src="images/sunset-ocean.svg" class="d-block w-100" alt="Sunset Ocean">
+                  <div class="card text-bg-dark">                    
+                    <img id="randomImage" src="" class="img-thumbnail float-end d-block w-100"  alt="Random Image">
+                    <!--<img src="images/sunset-ocean.svg" class="d-block w-100" alt="Sunset Ocean">-->
                     <div class="card-img-overlay">
                       <h5 class="card-title">Weather Direct</h5>
                       <p class="card-text">Software Developer: Ralph Eimerson B. Ompoc</p>
@@ -257,25 +272,34 @@
               </button>
             </div>  
             </div>
+            <!--Random pictures using unsplash API.
+            <div class="col-3 col-sm-2 col-md-2 col-lg-2 p-1 g-1">
+              <img id="randomImage" src="" class="img-thumbnail float-end rounded-pill"  alt="Random Image">
+            </div>-->
             <div class="col-0 col-sm-1 col-md-1 col-lg-2 p-1 g-1">              
             </div> 
           </div>
 
         </div>
       </div>
+
+      <!--<div class="row justify-content-center">
+        <img id="randomImage" src="images/snow-mountain.svg" alt="Random Image">
+      </div>-->
     </main>
 
     <!--Footer: Display my name and student id (3rd layer in my web application)-->
     <footer class="footer">
       <div class="container text-center p-0 g-0 lh-0 fs-6 bs-info-text-emphasis">
-        <p>&#169; Copyright 2021. All Right Reserved.<br>
-        <a href="mailto:storemeup@retailcompany.net">Request Information</a></br>       
+        <p>&#169; Copyright 2024. All Right Reserved.<br>
+        <a href="mailto:storemeup@retailcompany.net">Request Information</a><br>       
         Ralph Eimerson Ompoc&nbsp;&nbsp; C0921675</p>
       </div>
     </footer>
     
     <!--Links for my weather.js and bootstrap javascript file -->
     <script src="scripts/weather.js"></script>
+    <script src="scripts/unsplash.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>

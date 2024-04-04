@@ -144,137 +144,132 @@
 
           <!--3rd sub-section with more information to display in --> 
           <div class="row p-0 g-0">
-            <div class="col-0 col-sm-1 col-md-1 col-lg-2 p-1 g-0">              
+            <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-0">              
             </div> 
             <div class="col-12 col-sm-10 col-md-10 col-lg-10 bg-info bg-opacity-50 p-1 g-1 rounded-1">
               <div id="carouselExampleDark" class="carousel carousel-dark slide">
-              <!--User interface from bootstrap layout which is a button to slide/carousel from left or right to view more information-->
-              <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-              </div>
-              <div class="carousel-inner">
-                <!--1st slide: weathe forecast for every 3 hours-->
-                <div class="carousel-item active" data-bs-interval="10000">
-                  <div id="row">
-                    <div class="border-info-subtle border-4 border-bottom d-none d-md-block col-12 col-sm-12 col-md-12 col-lg-12 text-center bg-info-subtle bg-opacity-0 p-1 g-1 rounded-0">
-                      <p class="card-title display-5">Weather Forecast</p>
-                    </div>
-                  </div>
-                  <div class="h-100 row row-cols-3 row-cols-sm-3 p-2 g-1 text-center fs-6">
-                    <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>
-                    <div class="col-10 col-sm-10 col-md-10 col-lg-10">
-                        <div class="row row-cols-3 w-100 g-0">                      
-                          <!--Forecast 1-->
-                          <div class="col-4 col-sm-4 col-md-4 col-lg-4  bg-opacity-75">
-                            <div class="card mb-3" style="max-width: 900px;">
-                              <div class="row g-0">
-                                <div class="col-md-4">
-                                  <p class="card-title display-1">*</p>
-                                </div>
-                                <div class="col-md-8">
-                                  <div class="card-body">
-                                    <h5 id="forecast-today-temp1" class="card-title"></h5>
-                                    <p id="forecast-hour1" class="card-text">Humidity</p>
-                                    <!--<p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>-->
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!--Forecast 2-->
-                          <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
-                            <div class="card mb-3" style="max-width: 900px;">
-                              <div class="row g-0">
-                                <div class="col-md-4">
-                                  <p class="card-title display-1">*</p>
-                                </div>
-                                <div class="col-md-8">
-                                  <div class="card-body">
-                                    <h5 id="forecast-today-temp2" class="card-title"></h5>
-                                    <p id="forecast-hour2" class="card-text">Wind</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!--Forecast 3-->
-                          <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
-                            <div class="card mb-3" style="max-width: 900px;">
-                              <div class="row g-0">
-                                <div class="col-md-4">
-                                  <p class="card-title display-1">*</p>
-                                </div>
-                                <div class="col-md-8">
-                                  <div class="card-body">
-                                    <h5 id="forecast-today-temp3" class="card-title"></h5>
-                                    <p id="forecast-hour3" class="card-text">Pressure</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>
-                  </div>
+                <!--User interface from bootstrap layout which is a button to slide/carousel from left or right to view more information-->
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
+                <div class="carousel-inner">
+                  <!--1st slide: weathe forecast for every 3 hours-->
+                  <div class="carousel-item active" data-bs-interval="10000">
+                    <div id="row">
+                      <div class="border-info-subtle border-4 border-bottom d-none d-md-block col-12 col-sm-12 col-md-12 col-lg-12 text-center bg-info-subtle bg-opacity-0 p-1 g-1 rounded-0">
+                        <p class="card-title display-5">Weather Forecast</p>
+                      </div>
+                    </div>
+                    <div class="h-100 row row-cols-3 row-cols-sm-3 p-2 g-1 text-center fs-6">
+                      <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>
+                      <div class="col-10 col-sm-10 col-md-10 col-lg-10">
+                          <div class="row row-cols-3 w-100 g-0">                      
+                            <!--Forecast 1-->
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4  bg-opacity-75">
+                              <div class="card mb-3" style="max-width: 900px;">
+                                <div class="row g-0">
+                                  <div class="col-md-4">
+                                    <p class="card-title display-1">*</p>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <div class="card-body">
+                                      <h5 id="forecast-today-temp1" class="card-title"></h5>
+                                      <p id="forecast-hour1" class="card-text">Humidity</p>
+                                      <!--<p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>-->
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!--Forecast 2-->
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
+                              <div class="card mb-3" style="max-width: 900px;">
+                                <div class="row g-0">
+                                  <div class="col-md-4">
+                                    <p class="card-title display-1">*</p>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <div class="card-body">
+                                      <h5 id="forecast-today-temp2" class="card-title"></h5>
+                                      <p id="forecast-hour2" class="card-text">Wind</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!--Forecast 3-->
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
+                              <div class="card mb-3" style="max-width: 900px;">
+                                <div class="row g-0">
+                                  <div class="col-md-4">
+                                    <p class="card-title display-1">*</p>
+                                  </div>
+                                  <div class="col-md-8">
+                                    <div class="card-body">
+                                      <h5 id="forecast-today-temp3" class="card-title"></h5>
+                                      <p id="forecast-hour3" class="card-text">Pressure</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>
+                    </div>
+                  </div>
 
-                <!--2nd slide: for additional information that includes the population, ground leve, sea level, visibility, wind direction-->
-                <div class="carousel-item" data-bs-interval="2000">
-                  <div id="row">
-                    <div class="border-info-subtle border-4 border-bottom d-none d-md-block col-12 col-sm-12 col-md-12 col-lg-12 text-center bg-info-subtle bg-opacity-0 p-1 g-1 rounded-0">
-                      <p class="card-title display-5">Additional Information</p>
+                  <!--2nd slide: for additional information that includes the population, ground leve, sea level, visibility, wind direction-->
+                  <div class="carousel-item" data-bs-interval="2000">
+                    <div class="row">
+                      <div class="border-info-subtle border-4 border-bottom d-none d-md-block col-12 col-sm-12 col-md-12 col-lg-12 text-center bg-info-subtle bg-opacity-0 p-1 g-1 rounded-0">
+                        <p class="card-title display-5">Additional Information</p>
+                      </div>
+                    </div>
+                    <div class="h-100 row row-cols-3 row-cols-sm-3 p-2 g-1 text-end fs-6">
+                      <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>
+                      <div class="col-10 col-sm-10 col-md-10 col-lg-10">
+                          <div class="row w-100 g-0">
+                            <ul class="list-group list-group-flush">
+                              <li id="population" class="list-group-item"></li>
+                              <li id="ground_level" class="list-group-item"></li>
+                              <li id="sea_level" class="list-group-item"></li>
+                              <li id="visibility" class="list-group-item"></li>
+                              <li id="wind_direction" class="list-group-item"></li>
+                              <li class="list-group-item"></li>
+                            </ul>
+                          </div>
+                      </div>
+                      <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>  
                     </div>
                   </div>
-                  <div class="h-100 row row-cols-3 row-cols-sm-3 p-2 g-1 text-end fs-6">
-                    <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>
-                    <div class="col-10 col-sm-10 col-md-10 col-lg-10">
-                        <div class="row w-100 g-0">
-                          <ul class="list-group list-group-flush">
-                            <li id="population" class="list-group-item"></li>
-                            <li id="ground_level" class="list-group-item"></li>
-                            <li id="sea_level" class="list-group-item"></li>
-                            <li id="visibility" class="list-group-item"></li>
-                            <li id="wind_direction" class="list-group-item"></li>
-                            <li class="list-group-item"></li>
-                          </ul>
-                        </div>
-                    </div>
-                    <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>  
-                  </div>
-                </div>
 
-                <!--3rd slide: Other information user-->
-                <div class="carousel-item">
-                  <div class="card text-bg-dark">                    
-                    <img id="randomImage" src="" class="img-thumbnail float-end d-block w-100"  alt="Random Image">
-                    <!--<img src="images/sunset-ocean.svg" class="d-block w-100" alt="Sunset Ocean">-->
-                    <div class="card-img-overlay">
-                      <h5 class="card-title">Weather Direct</h5>
-                      <p class="card-text">Software Developer: Ralph Eimerson B. Ompoc</p>
-                      <p class="card-text"><small>Front-End Web Development II Project</small></p>
+                  <!--3rd slide: Other information user-->
+                  <div class="carousel-item">
+                    <div class="card text-bg-dark">                    
+                      <img id="randomImage" src="" class="img-thumbnail float-end d-block w-100"  alt="Random Image">
+                      <!--<img src="images/sunset-ocean.svg" class="d-block w-100" alt="Sunset Ocean">-->
+                      <div class="card-img-overlay">
+                        <h5 class="card-title">Weather Direct</h5>
+                        <p class="card-text">Software Developer: Ralph Eimerson B. Ompoc</p>
+                        <p class="card-text"><small>Front-End Web Development II Project</small></p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>  
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>  
             </div>
-
-            <!--Random pictures using unsplash API.
-            <div class="col-3 col-sm-2 col-md-2 col-lg-2 p-1 g-1">
-              <img id="randomImage" src="" class="img-thumbnail float-end rounded-pill"  alt="Random Image">
-            </div>-->
-            <div class="col-0 col-sm-1 col-md-1 col-lg-2 p-1 g-1">              
+            <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">              
             </div> 
           </div>
 
@@ -298,7 +293,7 @@
               <!--Button for search-->
               <div class="col-12 p-1 g-0 d-grid gap-1 bg-warning rounded-2">
                 <button id="search-image" type="button" class="shadow-sm btn btn-outline-dark rounded-2 text-warning" href="#viewImage">
-                  <img src="images\icons\magnifying-glass-icon.svg">Search
+                  <img src="images/icons/magnifying-glass-icon.svg">Search
                 </button>                
               </div>
             </div>

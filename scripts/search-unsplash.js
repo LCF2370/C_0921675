@@ -1,28 +1,26 @@
-
 $(document).ready(function() {
-    $('#search-image').submit(function(event) {
-      event.preventDefault();
+  // Function to fetch images from Unsplash API
+  function fetchImages(query) {
+      const accessKey = 'S0rQa8LyyPQBT-Q0KXHxLHYE1T_nHUbJMsgMoiphF4w';
+      const apiUrl = `https://api.unsplash.com/search/photos?query=${query}&client_id=${accessKey}`;
 
-      var query = $('#image-unsplash').val();
-
-      $.ajax({
-        url: 'https://api.unsplash.com/search/photos',
-        method: 'GET',
-        data: {
-          query: query,
-          client_id: 'S0rQa8LyyPQBT-Q0KXHxLHYE1T_nHUbJMsgMoiphF4w'
-        },
-        success: function(data) {
+      // Make a GET request to the Unsplash API
+      $.get(apiUrl, function(response) {
+          // Clear the image container
           $('#searched-image').empty();
 
-          $.each(data.results, function(index, photo) {
-            var img = $('<img>').attr('src', photo.urls.small).attr('alt', photo.alt_description);
-            $('#searched-image').append(img);
+          // Loop through the response and display images
+          response.results.forEach(function(photo) {
+              const imageUrl = photo.urls.regular;
+              const imageElement = `<img src="${imageUrl}" alt="Unsplash Image">`;
+              $('#searched-image').append(imageElement);
           });
-        },
-        error: function(xhr, status, error) {
-          console.error('Error fetching images:', error);
-        }
       });
-    });
+  }
+
+  // Event listener for the search button
+  $('#search-image').click(function() {
+      const searchQuery = $('#image-unsplash').val();
+      fetchImages(searchQuery);
   });
+});

@@ -13,7 +13,7 @@ $(document).ready(function() {
           response.results.forEach(function(photo) {
               const imageUrl = photo.urls.regular;
               const imageElement = `<img src="${imageUrl}" alt="Unsplash Image">`;
-              $('#searched-image').append(imageElement);
+              $('#viewImage').append(imageElement);
           });
       });
   }

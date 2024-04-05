@@ -10,14 +10,22 @@ let longitude = 0;
 let city = '';
 //Using javascript
 $(document).ready(function(){
+    /*
+    $('#cityNameValue').on("keypress",function(event){
+        var cityName = $("#cityNameValue").val();
+        if(event.which === 13){
+            weatherUpdate(cityName);
+        }
+    });*/
     //Checks if the search button is clicked by the user with id='checkWeather'
     $('#checkWeather').click(function(){
         //Variable declaration for the city name being entered by the user from input text field with id='cityNameValue'
+        
         var cityName = $("#cityNameValue").val();
         //Conditional statement and validates if text field is empty or not
         if(cityName != ''){
             function weatherUpdate(){
-                //Using Asynchronous JavaScript to fetch data from API OpenWeatherMap
+            //Using Asynchronous JavaScript to fetch data from API OpenWeatherMap
                 $.ajax({
                     //URL includes the API source/variable cityName/preferred units which I used is metric/APPID = equivalent to my API key
                     url: 'https://api.openweathermap.org/data/2.5/weather?q='+cityName+"&units=metric"
@@ -26,6 +34,7 @@ $(document).ready(function(){
                     type: 'GET',
                     dataType: 'jsonp',
                     success: function(data){
+                        console.log(data);
                         //Variable declaration                    
                         latitude = data.coord.lat;
                         longitude = data.coord.lon;                    
@@ -35,32 +44,38 @@ $(document).ready(function(){
                         var date = new Date();
                         date.setHours(date.getUTCHours() + timezoneOffset);
                         var h = date.getHours();
-                        var m = date.getMinutes();
+                        var min = date.getMinutes();
                         var hr = h;
                         if(hr >= 12){ var meridian = "PM" }
                         else{ var meridian = "AM"}
                         if(hr > 12){ hr=Math.abs(hr - 12) }
-    
+                        var m = "" + min;
+                        if (m.length < 2) { m = "0" + m}
                         //Unhide the weather information section
                         document.getElementById("weatherInfo").style.display = "block";
-    
+        
                         /**Send data to HTML to display the weather information using getElementID
                         *  The following data retrieved are temperature, city name, country acronymn, feels like temperature
                         *  weather, maximum temperature, minimum temperature, humidity, wind speed, pressure
                         */
                         document.getElementById("temperature").innerHTML = Math.round(data.main.temp) +"&deg;C";
-                        document.getElementById("weather-info-1").innerHTML = data.name + ", " +data.sys.country + "<br>" + "Feels Like " + Math.round(data.main.feels_like) +"&deg;C" + "<br>" + Math.round(data.main.temp_max) +"&deg;C" + " / " + Math.round(data.main.temp_min) +"&deg;C" + "<br>" +  weather + "<br>" + hr + ":" + m + meridian;
+                        document.getElementById("weather-info-1").innerHTML = data.name + ", " +data.sys.country + "<br>" + "Feels Like " + Math.round(data.main.feels_like) +"&deg;C" + "<br>" + Math.round(data.main.temp_max) +"&deg;C" + " / " + Math.round(data.main.temp_min) +"&deg;C" + "<br>" +  weather;
+                        document.getElementById("weather-info-1-lg").innerHTML = data.name + ", " +data.sys.country + "<br>" + "Feels Like " + Math.round(data.main.feels_like) +"&deg;C" + "<br>" + Math.round(data.main.temp_max) +"&deg;C" + " / " + Math.round(data.main.temp_min) +"&deg;C" + "<br>" +  weather;
                         document.getElementById("humidityInfo").innerHTML = data.main.humidity + "%";
                         document.getElementById("windInfo").innerHTML = Math.round(data.wind.speed) +" m/s";
                         document.getElementById("pressureInfo").innerHTML = data.main.pressure + " hPa";
+                        document.getElementById("humidityInfo_lg").innerHTML = data.main.humidity + "%";
+                        document.getElementById("windInfo_lg").innerHTML = Math.round(data.wind.speed) +" m/s";
+                        document.getElementById("pressureInfo_lg").innerHTML = data.main.pressure + " hPa";
                         document.getElementById("forecast-today-temp1").innerHTML = Math.round(data.main.temp) +"&deg;C";
+                        document.getElementById("digitalClock").innerHTML = hr + ":" + m + " " + meridian;
                         
                         //Creates an array of time forecast
                         /**
                             if(h >= 12){ var meridian = "PM" }
                             else{ var meridian = "AM"}
                             if(h > 12){ h=Math.abs(h - 12) }
-                             */
+                            */
                         var timeZoneArray = [];
                         for (var i = 0; i < 3; i++) {
                             let stringHour = h;
@@ -71,15 +86,9 @@ $(document).ready(function(){
                         var meridianArray = [];
                         for (var i = 0; i < 3; i++) {
                             if (timeZoneArray[i] >= 0 && timeZoneArray[i] < 12){
-                                var meridian = "AM";
-                                if(timeZoneArray[i] >= 0 && timeZoneArray[i] < 10){                                
-                                    let stringMeridian = "0" + timeZoneArray[i] + " " + meridian;
-                                    meridianArray.push(stringMeridian); 
-                                }
-                                else{                                
-                                    let stringMeridian = timeZoneArray[i] + " " + meridian;
-                                    meridianArray.push(stringMeridian); 
-                                }
+                                var meridian = "AM";                                
+                                let stringMeridian = timeZoneArray[i] + " " + meridian;
+                                meridianArray.push(stringMeridian); 
                             }
                             else if(timeZoneArray[i] >= 12 && timeZoneArray[i] < 24){ 
                                 var meridian = "PM"; 
@@ -89,16 +98,10 @@ $(document).ready(function(){
                                     console.log(hrs);
                                     let stringMeridian =hrs + " " + meridian;
                                     meridianArray.push(stringMeridian);
-                                 }else{
-                                    if(timeZoneArray[i] >= 0 && timeZoneArray[i] < 10){
-                                        let stringMeridian ="0" + timeZoneArray[i] + " " + meridian;
-                                        meridianArray.push(stringMeridian);
-                                    }
-                                    else{
-                                        let stringMeridian =timeZoneArray[i] + " " + meridian;
-                                        meridianArray.push(stringMeridian);                                    
-                                    }
-                                 }
+                                }else{
+                                    let stringMeridian =timeZoneArray[i] + " " + meridian;
+                                    meridianArray.push(stringMeridian);
+                                }
                             }
                             else{ 
                                 var meridian = "AM";
@@ -122,7 +125,7 @@ $(document).ready(function(){
                         } 
                         console.log(timeZoneArray);
                         console.log(meridianArray);
-    
+        
                         //Variable assigning a string value that includes city name and country acronym 
                         city = data.name + ", " +data.sys.country;
                         $.ajax({                        
@@ -148,7 +151,7 @@ $(document).ready(function(){
                                 let direction = '';
                                 let p = data.city.population;
                                 p = p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    
+        
                                 //Conditional statement to label the wind direction and labeling the wind direction
                                 if(w > 0 && w < 90){direction = 'North/East'}
                                 if(w > 90 && w < 180){direction = 'South/East'}
@@ -158,7 +161,7 @@ $(document).ready(function(){
                                 if( w == 90){direction='East'};
                                 if( w == 180){direction='South'};
                                 if( w == 270){direction='West'};
-    
+        
                                 /**Send data to HTML to display the weather information using getElementID
                                 *  The following data retrieved are population and angle of the wind direction,
                                 */
@@ -169,17 +172,18 @@ $(document).ready(function(){
                     }
                 });
             }
-            // Initial call
-            weatherUpdate();
-
-            // Set interval to call API every 5 seconds
-            setInterval(weatherUpdate, 60000);
         }
         //Conditional statement if cityName input textfield is empty it will hide the weather information section and no data retrieved
         else{
             $("#error").html('Field cannot be empty')
             document.getElementById("weatherInfo").style.display = "none";
         }
+    
+        // Initial call
+        //weatherUpdate();
+        // Set interval to call API every 5 seconds
+        weatherUpdate();
+        setInterval(weatherUpdate, 20000);        
     });
 });
 

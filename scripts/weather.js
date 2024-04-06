@@ -1,7 +1,7 @@
 /**
  * Student Name: Ralph Eimerson Ompoc
  * Student ID: c0921675
- * Date: February 28, 2024
+ * Date: April , 2024
  */
 
 //Variable declaration
@@ -10,13 +10,6 @@ let longitude = 0;
 let city = '';
 //Using javascript
 $(document).ready(function(){
-    /*
-    $('#cityNameValue').on("keypress",function(event){
-        var cityName = $("#cityNameValue").val();
-        if(event.which === 13){
-            weatherUpdate(cityName);
-        }
-    });*/
     //Checks if the search button is clicked by the user with id='checkWeather'
     $('#checkWeather').click(function(){
         //Variable declaration for the city name being entered by the user from input text field with id='cityNameValue'

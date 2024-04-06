@@ -1,27 +1,19 @@
 /*
  Student Name: Ralph Eimerson Ompoc
  Student ID: c0921675
- Date: February 28, 2024
+ Date: April , 2024
  */
-/*
-Default hiding the weather information section which is 
-<div id = 'weatherInfo'> tag in HTML file
 
-#footer {
-    position: sticky;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
- }*/
+/* Defaulting all text the font-family to Merriweather from Google Fonts */
 *{
     font-family: 'Merriweather', serif;
-}
+} 
 
-#weatherInfo{
-    display: none;
-}
-
-#viewImage-container{
+/*
+* Default hiding the weather information section which is 
+* <div id = 'weatherInfo'> tag in HTML file
+* <div id = 'viewImage-container>
+*/
+#weatherInfo, #viewImage-container{
     display: none;
 }

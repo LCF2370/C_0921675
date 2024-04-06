@@ -64,7 +64,7 @@ $(document).ready(function(){
                         document.getElementById("pressureInfo_lg").innerHTML = data.main.pressure + " hPa";
                         document.getElementById("forecast-today-temp1").innerHTML = Math.round(data.main.temp) +"&deg;C";
                         document.getElementById("digitalClock").innerHTML = hr + ":" + m + " " + meridian + " | " + data.name + ", " +data.sys.country;
-                        document.getElementById("digitalClock-lg").innerHTML = hr + ":" + m + " " + meridian + " | " + data.name + ", " +data.sys.country;
+                        document.getElementById("digitalClock-lg").innerHTML = hr + ":" + m + " " + meridian + "<br> <h6>" + data.name + ", " +data.sys.country + "<h6>";
                         // Weather information background
                         console.log(weatherBG(weather, hr,meridian));
                         document.getElementById('weather-info-bg').src = weatherBG(weather, hr, meridian);

@@ -19,7 +19,7 @@
     <!--main section within the body of the webpage also used bootstrap class-->
     <main role="main" class="container bs-info-text-emphasis">
          
-      <!-- Display Logo: (1st layer in my web application) -->
+      <!-- Display Logo: (1st layer in my web application) 
       <div class="row justify-content-center">
         <div class="row g-0 p-0">
           <div class="row p-1 g-1">
@@ -29,7 +29,7 @@
             </div>
             <div class="col-2 col-sm-4 col-md-3 col-lg-5"></div>
           </div>
-        </div>   
+        </div>-->   
            
         <!--User Interface: input text field and search button (2nd layer in my web application)-->
         <div class="row p-0 g-0 sticky-top bg-info-subtle">
@@ -362,38 +362,61 @@
         <div class="col-1 col-sm-2 col-md-2 col-lg-3 p-2 g-2">
         </div>
         <div class="col-10 col-sm-8 col-md-8 col-lg-6 p-2 g-2 rounded-pill">
-          <div class="row p-2 g-2 bg-dark shadow-sm rounded-pill">
-            <!-- Input text field for Unsplash search images API -->
-            <div class="col-8 col-sm-9 col-md-10 p-0 g-0 d-grid gap-1">
-              <form class="form-floating">
-                <input id="image-unsplash" type="text" class="form-control rounded-start-pill" placeholder="Unsplash">
-                <label for="image-unsplash">Search Unsplash Image</label>
-              </form>
-            </div>    
-            <!--Button for search-->
-            <div class="col-4 col-sm-3 col-md-2 p-0 g-0 d-grid gap-1 bg-light rounded-end-pill">
-              <button id="search-image" type="button" class="shadow-sm btn btn-outline-warning rounded-end-pill text-warning" href="#viewImage">
-                <img src="images/icons/magnifying-glass-icon.svg">
+            <div class="row p-2 g-2 bg-dark shadow-sm rounded-pill">
+              <!-- Input text field for Unsplash search images API -->
+              <div class="col-12 p-0 g-0 d-grid gap-1">
+                <select id="image-unsplash" class="form-select rounded-pill" aria-label="Large select example">
+                  <option selected>Select Category</option>
+                  <option value="Space">Space</option>
+                  <option value="Adventure">Adventure</option>
+                  <option value="Bears">Bears</option>
+                </select>
+                <!--<form class="form-floating">
+                  <input id="image-unsplash" type="text" class="form-control rounded-start-pill" placeholder="Unsplash">
+                  <label for="image-unsplash">Search Unsplash Image</label>
+                </form>-->
+              </div>    
+              <!--Button for search
+              <div class="col-4 col-sm-3 col-md-2 p-0 g-0 d-grid gap-1 bg-light rounded-end-pill">
+                <button id="search-image" type="button" class="shadow-sm btn btn-outline-warning rounded-end-pill text-warning" href="#viewImage">
+                  <img src="images/icons/magnifying-glass-icon.svg">
+                </button>
+            </div>-->              
+          </div>
+          <div id="viewImage-container" class="row p-2 g-2 shadow-sm rounded-2">
+            <div id="carouselExample" class="carousel slide">
+              <div id="viewImage" class="carousel-inner">
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
               </button>
-          </div>              
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>          
         </div>
         <div class="col-1 col-sm-2 col-md-2 col-lg-3 p-2 g-2">              
-        </div>            
-      </div>      
+        </div>
+      </div> 
+      <!--Footer: Display my name and student id (3rd layer in my web application)-->
+         
     </main>
-
-    <!--Footer: Display my name and student id (3rd layer in my web application)-->
-    <footer class="footer bg-info bg-gradient">
+    <footer class="footer bg-info bg-opacity-75">
       <div class="container text-center p-0 g-0 lh-0 fs-6 text-dark">
         <p><span class="fw-bolder">Ralph Eimerson Ompoc</span> <br>&#169; Copyright 2024 
           <br>All Right Reserved <br>C0921675</p>
       </div>
-    </footer>
+    </footer>  
+
+    
     
     <!--Links for my weather.js and bootstrap javascript file -->
     <script src="scripts/weather.js"></script>
-    <!--<script src="scripts/unsplash.js"></script>
-    <<script src="scripts/search-unsplash.js"></script>-->
+    <!--<script src="scripts/unsplash.js"></script>-->
+    <script src="scripts/search-unsplash.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>

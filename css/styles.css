@@ -6,7 +6,18 @@
 /*
 Default hiding the weather information section which is 
 <div id = 'weatherInfo'> tag in HTML file
-*/
+
+#footer {
+    position: sticky;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+ }*/
 #weatherInfo{
+    display: none;
+}
+
+#viewImage-container{
     display: none;
 }

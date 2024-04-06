@@ -53,6 +53,7 @@ $(document).ready(function(){
                         *  weather, maximum temperature, minimum temperature, humidity, wind speed, pressure
                         */
                         document.getElementById("temperature").innerHTML = Math.round(data.main.temp) +"&deg;C";
+                        document.getElementById("temperature-lg").innerHTML = Math.round(data.main.temp) +"&deg;C";
                         document.getElementById("weather-info-1").innerHTML = data.name + ", " +data.sys.country + "<br>" + "Feels Like " + Math.round(data.main.feels_like) +"&deg;C" + "<br>" + Math.round(data.main.temp_max) +"&deg;C" + " / " + Math.round(data.main.temp_min) +"&deg;C" + "<br>" +  weather;
                         document.getElementById("weather-info-1-lg").innerHTML = data.name + ", " +data.sys.country + "<br>" + "Feels Like " + Math.round(data.main.feels_like) +"&deg;C" + "<br>" + Math.round(data.main.temp_max) +"&deg;C" + " / " + Math.round(data.main.temp_min) +"&deg;C" + "<br>" +  weather;
                         document.getElementById("humidityInfo").innerHTML = data.main.humidity + "%";

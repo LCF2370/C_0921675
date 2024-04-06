@@ -67,19 +67,8 @@
             <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">           
             </div>
             
-            <!-- This only display in larger screen like tablet, desktop, or laptop -->
-            <div class="d-none d-md-block d-lg-block col-8 col-sm-7 col-md-7 col-lg-7 p-1 g-1 rounded-1">
-              <div class="card text-bg-light">
-                <img id="weather-info-bg-lg" src="" class="card-img" alt="sunrise mountain">
-                <div class="card-img-overlay text-light bg-dark bg-opacity-50">
-                    <h5 id="temperature-lg" class="card-title display-1 text-light"></h5>                                      
-                    <p id="weather-info-1-lg" class="card-text"></p>
-                </div>
-              </div>          
-            </div>
-            
             <!-- This only display in smaller screen like phones -->
-            <div class="d-block d-md-none col-12 p-1 g-1 rounded-1">
+            <div class="d-block d-lg-none col-12 p-1 g-1 rounded-1">
               <div class="card text-bg-light">
                 <img id="weather-info-bg" src="" class="card-img" alt="sunrise mountain">
                 <div class="card-img-overlay text-light bg-dark bg-opacity-50">
@@ -89,7 +78,7 @@
               </div>
 
               <!-- 2nd sub-section for additional information like Humidity, Wind Speed, and Pressure Infor Card Display -->  
-              <div class="d-none d-sm-block row row-cols-3 row-cols-sm-3 p-2 g-1 text-center fs-6">
+              <div class="row row-cols-3 row-cols-sm-3 p-2 g-1 text-center fs-6">
                 <div class="col-0 col-sm-0 col-md-0 col-lg-1"></div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-10">
                     <div class="row row-cols-3 w-100 g-0">                      
@@ -146,12 +135,23 @@
                 <div class="col-0 col-sm-0 col-md-0 col-lg-1"></div>
               </div>            
             </div>
+            
+            <!-- This only display in larger screen like tablet, desktop, or laptop -->
+            <div class="d-none d-lg-block col-7 col-sm-7 col-md-7 col-lg-7 p-1 g-1 rounded-1">
+              <div class="card text-bg-light">
+                <img id="weather-info-bg-lg" src="" class="card-img" alt="sunrise mountain">
+                <div class="card-img-overlay text-light bg-dark bg-opacity-50">
+                    <h5 id="temperature-lg" class="card-title display-1 text-light"></h5>                                      
+                    <p id="weather-info-1-lg" class="card-text"></p>
+                </div>
+              </div>          
+            </div>
 
             <!-- Sidebar: Digital Clock per Timezone,Humidity, Wind Speed, and Pressure Information
                  This only display in larger screen like desktop, tablet, or laptop-->
-            <div class="d-none d-md-block d-lg-block col-4 col-sm-3 col-md-3 col-lg-3 p-1 g-1 border border-0 rounded-1">
-              <div class="h-100 row row-cols-3 row-cols-sm-3 p-0 g-0 m-0 text-center fs-6 border border-0">
-                <div class="d-none d-sm-block col-0 col-sm-1 col-md-1 col-lg-1 p-0 g-0 m-0 border border-0"></div>
+            <div class="d-none d-lg-block col-3 col-sm-3 col-md-3 col-lg-3 p-1 g-1 border border-0 rounded-1">
+              <div class="row row-cols-3 row-cols-sm-3 p-0 g-0 m-0 text-center fs-6 border border-0">
+                <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-0 g-0 m-0 border border-0"></div>
                 <div class="col-12 col-sm-10 col-md-10 col-lg-10 p-0 g-0 m-0 border border-0">
                   <div class="card border border-0" style="width: 18rem;">
                     <!-- Digital Clock for every timezone -->
@@ -216,7 +216,7 @@
                     </ul>
                   </div>
                 </div>
-                <div class="d-none d-sm-block col-0 col-sm-1 col-md-1 col-lg-1"></div>
+                <div class="col-0 col-sm-1 col-md-1 col-lg-1"></div>
               </div> 
             </div>
             <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">
@@ -370,13 +370,13 @@
           </div>
 
           <!-- Digital Clock-->
-          <div class="d-block d-md-none row p-1 g-1 text-center">
-            <div class="col-0 col-sm-0 col-md-2 col-lg-3 p-2 g-2">
+          <div class="d-block d-lg-none row p-1 g-1 text-center">
+            <div class="col-0 p-2 g-2">
             </div>
             <div class="col-12 col-sm-12 col-md-8 col-lg-6 p-2 g-2 m-2">
               <p id="digitalClock" class="fs-3" style="font-family: 'Orbitron', sans-serif;"></p>
             </div>
-            <div class="col-0 col-sm-0 col-md-2 col-lg-3 p-2 g-2">
+            <div class="col-0 p-2 g-2">
             </div>
           </div>
         </div>

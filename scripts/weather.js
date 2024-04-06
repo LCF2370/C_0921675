@@ -11,13 +11,14 @@ let city = '';
 //Using javascript
 $(document).ready(function(){
     //Checks if the search button is clicked by the user with id='checkWeather'
-    $('#checkWeather').click(function(){
+    $('#checkWeather').click(function(){  
         //Variable declaration for the city name being entered by the user from input text field with id='cityNameValue'
-        
-        var cityName = $("#cityNameValue").val();
-        //Conditional statement and validates if text field is empty or not
-        if(cityName != ''){
+        var cityNameValue = $("#cityNameValue").val();
+        //var cityName_temp = cityName.textContent;
+        //Conditional statement and validates if text field is empty or not            
+        if(cityNameValue != ''){
             function weatherUpdate(){
+            var cityName = $("#cityNameValue").val();
             //Using Asynchronous JavaScript to fetch data from API OpenWeatherMap
                 $.ajax({
                     //URL includes the API source/variable cityName/preferred units which I used is metric/APPID = equivalent to my API key
@@ -64,11 +65,6 @@ $(document).ready(function(){
                         document.getElementById("digitalClock").innerHTML = hr + ":" + m + " " + meridian;
                         
                         //Creates an array of time forecast
-                        /**
-                            if(h >= 12){ var meridian = "PM" }
-                            else{ var meridian = "AM"}
-                            if(h > 12){ h=Math.abs(h - 12) }
-                            */
                         var timeZoneArray = [];
                         for (var i = 0; i < 3; i++) {
                             let stringHour = h;
@@ -118,7 +114,6 @@ $(document).ready(function(){
                         } 
                         console.log(timeZoneArray);
                         console.log(meridianArray);
-        
                         //Variable assigning a string value that includes city name and country acronym 
                         city = data.name + ", " +data.sys.country;
                         $.ajax({                        
@@ -130,6 +125,7 @@ $(document).ready(function(){
                                 /**Send data to HTML to display the weather information using getElementID
                                 *  The following data retrieved are temperature in every 3 hours, sea level, ground level, visibility
                                 */
+                                console.log(data);
                                 document.getElementById("forecast-today-temp2").innerHTML = Math.round(data.list[1].main.temp) +"&deg;C";
                                 document.getElementById("forecast-today-temp3").innerHTML = Math.round(data.list[2].main.temp) +"&deg;C";
                                 document.getElementById("forecast-hour1").innerHTML = meridianArray[0];
@@ -165,6 +161,8 @@ $(document).ready(function(){
                     }
                 });
             }
+            weatherUpdate();
+            setInterval(weatherUpdate, 5000);
         }
         //Conditional statement if cityName input textfield is empty it will hide the weather information section and no data retrieved
         else{
@@ -174,9 +172,8 @@ $(document).ready(function(){
     
         // Initial call
         //weatherUpdate();
-        // Set interval to call API every 5 seconds
-        weatherUpdate();
-        setInterval(weatherUpdate, 20000);        
+        // Set interval to call API every 5 seconds  
+        //var cityName = $("#cityNameValue").val();      
     });
 });
 

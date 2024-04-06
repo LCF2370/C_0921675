@@ -62,8 +62,13 @@ $(document).ready(function(){
                         document.getElementById("windInfo_lg").innerHTML = Math.round(data.wind.speed) +" m/s";
                         document.getElementById("pressureInfo_lg").innerHTML = data.main.pressure + " hPa";
                         document.getElementById("forecast-today-temp1").innerHTML = Math.round(data.main.temp) +"&deg;C";
-                        document.getElementById("digitalClock").innerHTML = hr + ":" + m + " " + meridian;
-                        
+                        document.getElementById("digitalClock").innerHTML = hr + ":" + m + " " + meridian + " | " + data.name + ", " +data.sys.country;
+                        document.getElementById("digitalClock-lg").innerHTML = hr + ":" + m + " " + meridian + " | " + data.name + ", " +data.sys.country;
+                        // Weather information background
+                        console.log(weatherBG(weather, hr,meridian));
+                        document.getElementById('weather-info-bg').src = weatherBG(weather, hr, meridian);
+                        document.getElementById('weather-info-bg-lg').src = weatherBG(weather, hr, meridian);
+
                         //Creates an array of time forecast
                         var timeZoneArray = [];
                         for (var i = 0; i < 3; i++) {
@@ -140,6 +145,9 @@ $(document).ready(function(){
                                 document.querySelector('#forecast-1').src = weatherIcon(meridianArray[0]);
                                 document.querySelector('#forecast-2').src = weatherIcon(meridianArray[1]);
                                 document.querySelector('#forecast-3').src = weatherIcon(meridianArray[2]);
+                                document.querySelector('#forecast-1-lg').src = weatherIcon(meridianArray[0]);
+                                document.querySelector('#forecast-2-lg').src = weatherIcon(meridianArray[1]);
+                                document.querySelector('#forecast-3-lg').src = weatherIcon(meridianArray[2]);
 
                                 //Variable declaration
                                 let w = data.list[1].wind.deg;
@@ -168,18 +176,13 @@ $(document).ready(function(){
                 });
             }
             weatherUpdate();
-            setInterval(weatherUpdate, 5000);
+            setInterval(weatherUpdate, 1000);
         }
         //Conditional statement if cityName input textfield is empty it will hide the weather information section and no data retrieved
         else{
             $("#error").html('Field cannot be empty')
             document.getElementById("weatherInfo").style.display = "none";
         }
-    
-        // Initial call
-        //weatherUpdate();
-        // Set interval to call API every 5 seconds  
-        //var cityName = $("#cityNameValue").val();      
     });
 });
 
@@ -198,18 +201,52 @@ function weatherIcon(timeForecast){
     console.log(hr + " " + timeWeather)
     if(timeWeather[1] == 'AM'){
         if (hr > 5 && hr < 12){
-            return timeIcon = 'images/weather-icon/sunny-cloud.svg'
+            return timeIcon = 'images/weather-icon/sunny-cloud.svg';
         }
         if (hr == 12 || (hr > 0 && hr < 6)){
-            return timeIcon = 'images/weather-icon/night-sky.svg'
+            return timeIcon = 'images/weather-icon/night-sky.svg';
         }
     }
     if(timeWeather[1] == 'PM'){
         if (hr > 5 && hr < 12){
-            return timeIcon = 'images/weather-icon/night-sky.svg'
+            return timeIcon = 'images/weather-icon/night-sky.svg';
         }
         if (hr == 12 || (hr > 0 && hr < 6)){
-            return timeIcon = 'images/weather-icon/sunny-cloud.svg'            
+            return timeIcon = 'images/weather-icon/sunny-cloud.svg';
+        }
+    }
+}
+function weatherBG(w, h, m){
+    var timeWeather = m;
+    var hr = parseInt(h);
+    let weather = w.toLowerCase();
+    console.log(hr + " " + timeWeather)
+    if(timeWeather == 'AM'){
+        if (hr > 5 && hr < 12){
+            if(weather.indexOf("cloud") !== -1){return weatherBg = 'images/weather-bg/cloudy-sky-AM.svg';}
+            if(weather.indexOf("rain") !== -1){return weatherBg = 'images/weather-bg/rainy-sky-AM.svg';}
+            if(weather.indexOf("snow") !== -1){return weatherBg = 'images/weather-bg/snowy-sky-AM.svg';}
+            return weatherBg = 'images/weather-bg/clear-sky-AM.svg';
+        }
+        if (hr == 12 || (hr > 0 && hr < 6)){
+            if(weather.indexOf("cloud") !== -1){return weatherBg = 'images/weather-bg/cloudy-sky-PM.svg';}
+            if(weather.indexOf("rain") !== -1){return weatherBg = 'images/weather-bg/rainy-sky-PM.svg';}
+            if(weather.indexOf("snow") !== -1){return weatherBg = 'images/weather-bg/snowy-sky-PM.svg';}
+            return weatherBg = 'images/weather-bg/clear-sky-PM.svg';
+        }
+    }
+    if(timeWeather == 'PM'){
+        if (hr > 5 && hr < 12){
+            if(weather.indexOf("cloud") !== -1){return weatherBg = 'images/weather-bg/cloudy-sky-PM.svg';}
+            if(weather.indexOf("rain") !== -1){return weatherBg = 'images/weather-bg/rainy-sky-PM.svg';}
+            if(weather.indexOf("snow") !== -1){return weatherBg = 'images/weather-bg/snowy-sky-PM.svg';}
+            return weatherBg = 'images/weather-bg/clear-sky-PM.svg';
+        }
+        if (hr == 12 || (hr > 0 && hr < 6)){
+            if(weather.indexOf("cloud") !== -1){return weatherBg = 'images/weather-bg/cloudy-sky-AM.svg';}
+            if(weather.indexOf("rain") !== -1){return weatherBg = 'images/weather-bg/rainy-sky-AM.svg';}
+            if(weather.indexOf("snow") !== -1){return weatherBg = 'images/weather-bg/snowy-sky-AM.svg';}
+            return weatherBg = 'images/weather-bg/clear-sky-AM.svg';
         }
     }
 }

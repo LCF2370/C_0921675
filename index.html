@@ -12,11 +12,10 @@
     <!-- links of the bootstrap, css, and jquery I used in my web development -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="css/styles.css" rel="stylesheet">
+    <!-- links of the Google fonts I used in my web development -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- links of the Google fonts I used in my web development -->
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <!-- body section of the webpage using bootstrap class for the background color = bg-infor-subtle -->
   <body class="bg-info-subtle">
@@ -68,10 +67,10 @@
             <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">           
             </div>
             
-            <!-- This only display in smaller screen like phones -->
+            <!-- This only display in larger screen like tablet, desktop, or laptop -->
             <div class="d-none d-md-block d-lg-block col-8 col-sm-7 col-md-7 col-lg-7 p-1 g-1 rounded-1">
               <div class="card text-bg-light">
-                <img src="images/sunrise-mountain.svg" class="card-img" alt="sunrise mountain">
+                <img id="weather-info-bg-lg" src="" class="card-img" alt="sunrise mountain">
                 <div class="card-img-overlay">
                     <h5 id="temperature" class="card-title display-1"></h5>                                      
                     <p id="weather-info-1-lg" class="card-text"></p>
@@ -82,7 +81,7 @@
             <!-- This only display in smaller screen like phones -->
             <div class="d-block d-md-none col-12 p-1 g-1 rounded-1">
               <div class="card text-bg-dark">
-                <img src="images/sunrise-mountain.svg" class="card-img" alt="sunrise mountain">
+                <img id="weather-info-bg" src="" class="card-img" alt="sunrise mountain">
                 <div class="card-img-overlay">
                     <h5 id="temperature" class="card-title display-1"></h5>                                      
                     <p id="weather-info-1" class="card-text"></p>
@@ -99,7 +98,7 @@
                         <div class="card mb-3 rounded-5 rounded-end-0" style="max-width: 540px;">
                           <div class="row g-0">
                             <div class="col-md-4">
-                              <img src="images/humidity.svg" class="img-fluid rounded-start" alt="humidity icon">
+                              <img src="images/widget-icon/humidity.svg" class="img-fluid rounded-start" alt="humidity icon">
                             </div>
                             <div class="col-md-8">
                               <div class="card-body">
@@ -115,7 +114,7 @@
                         <div class="card mb-3 rounded-0" style="max-width: 540px;">
                           <div class="row g-0">
                             <div class="col-md-4">
-                              <img src="images/wind.svg" class="img-fluid rounded-start" alt="wind icon">
+                              <img src="images/widget-icon/wind.svg" class="img-fluid rounded-start" alt="wind icon">
                             </div>
                             <div class="col-md-8">
                               <div class="card-body">
@@ -131,7 +130,7 @@
                         <div class="card mb-3 rounded-5 rounded-start-0" style="max-width: 540px;">
                           <div class="row g-0">
                             <div class="col-md-4">
-                              <img src="images/pressure.svg" class="img-fluid rounded-start" alt="pressure icon">
+                              <img src="images/widget-icon/pressure.svg" class="img-fluid rounded-start" alt="pressure icon">
                             </div>
                             <div class="col-md-8">
                               <div class="card-body">
@@ -156,7 +155,7 @@
                   <div class="card border border-0" style="width: 18rem;">
                     <!-- Digital Clock for every timezone -->
                     <div class="card-header">
-                      <p id="digitalClock" class="fs-3"></p>
+                      <p id="digitalClock-lg" class="fs-3" style="font-family: 'Orbitron', sans-serif;"></p>
                     </div>
                     <ul class="list-group list-group-flush">
                       <!--Humidity-->
@@ -165,7 +164,7 @@
                           <div class="card mb-3 border border-0" style="max-width: 540px;">
                             <div class="row p-0 g-0 m-0">
                               <div class="col-md-4 p-0 g-0 m-0">
-                                <img src="images/humidity.svg" class="img-fluid rounded-start" alt="humidity icon">
+                                <img src="images/widget-icon/humidity.svg" class="img-fluid rounded-start" alt="humidity icon">
                               </div>
                               <div class="col-md-8">
                                 <div class="card-body">
@@ -183,7 +182,7 @@
                           <div class="card mb-3 border border-0 " style="max-width: 540px;">
                             <div class="row g-0">
                               <div class="col-md-4">
-                                <img src="images/wind.svg" class="img-fluid rounded-start" alt="wind icon">
+                                <img src="images/widget-icon/wind.svg" class="img-fluid rounded-start" alt="wind icon">
                               </div>
                               <div class="col-md-8">
                                 <div class="card-body">
@@ -201,7 +200,7 @@
                           <div class="card mb-3 border border-0 " style="max-width: 540px;">
                             <div class="row g-0">
                               <div class="col-md-4">
-                                <img src="images/pressure.svg" class="img-fluid rounded-start" alt="pressure icon">
+                                <img src="images/widget-icon/pressure.svg" class="img-fluid rounded-start" alt="pressure icon">
                               </div>
                               <div class="col-md-8">
                                 <div class="card-body">
@@ -252,8 +251,12 @@
                             <div class="col-4 col-sm-4 col-md-4 col-lg-4  bg-opacity-75">
                               <div class="card mb-3" style="max-width: 900px;">
                                 <div class="row g-0">
-                                  <div class="col-md-4 p-1 g-1">
-                                    <img id="forecast-1" src="" alt="sky cloudy" height="70%" width="auto" class="rounded mx-auto d-block">
+                                  <div class="d-none d-md-block d-lg-block col-md-4 p-1 g-1">
+                                    <img id="forecast-1-lg" src="" alt="sky cloudy" height="70%" width="auto" class="rounded mx-auto d-block">
+                                    <!--<p class="card-title display-1">*</p>-->
+                                  </div>
+                                  <div class="d-block d-md-none col-md-4 p-1 g-1">
+                                    <img id="forecast-1" src="" alt="sky cloudy" height="150%" width="auto" class="rounded mx-auto d-block">
                                     <!--<p class="card-title display-1">*</p>-->
                                   </div>
                                   <div class="col-md-8">
@@ -270,8 +273,12 @@
                             <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
                               <div class="card mb-3" style="max-width: 900px;">
                                 <div class="row g-0">
-                                  <div class="col-md-4 p-1 g-1">
-                                    <img id="forecast-2" src="" alt="sky cloudy" height="70%" width="auto" class="rounded mx-auto d-block">
+                                  <div class="d-none d-md-block d-lg-block col-md-4 p-1 g-1">
+                                    <img id="forecast-2-lg" src="" alt="sky cloudy" height="70%" width="auto" class="rounded mx-auto d-block">
+                                    <!--<p class="card-title display-1">*</p>-->
+                                  </div>
+                                  <div class="d-block d-md-none col-md-4 p-1 g-1">
+                                    <img id="forecast-2" src="" alt="sky cloudy" height="150%" width="auto" class="rounded mx-auto d-block">
                                     <!--<p class="card-title display-1">*</p>-->
                                   </div>
                                   <div class="col-md-8">
@@ -287,8 +294,12 @@
                             <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
                               <div class="card mb-3" style="max-width: 900px;">
                                 <div class="row g-0">
-                                  <div class="col-md-4 p-1 g-1">
-                                    <img id="forecast-3" src="" alt="sky cloudy" height="70%" width="auto" class="rounded mx-auto d-block">
+                                  <div class="d-none d-md-block d-lg-block col-md-4 p-1 g-1">
+                                    <img id="forecast-3-lg" src="" alt="sky cloudy" height="70%" width="auto" class="rounded mx-auto d-block">
+                                    <!--<p class="card-title display-1">*</p>-->
+                                  </div>
+                                  <div class="d-block d-md-none col-md-4 p-1 g-1">
+                                    <img id="forecast-3" src="" alt="sky cloudy" height="150%" width="auto" class="rounded mx-auto d-block">
                                     <!--<p class="card-title display-1">*</p>-->
                                   </div>
                                   <div class="col-md-8">
@@ -356,9 +367,20 @@
             <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">              
             </div> 
           </div>
+
+          <!-- Digital Clock-->
+          <div class="d-block d-md-none row p-1 g-1 text-center">
+            <div class="col-0 col-sm-2 col-md-2 col-lg-3 p-2 g-2">
+            </div>
+            <div class="col-12 col-sm-8 col-md-8 col-lg-6 p-2 g-2 m-2">
+              <p id="digitalClock" class="fs-3" style="font-family: 'Orbitron', sans-serif;"></p>
+            </div>
+            <div class="col-0 col-sm-2 col-md-2 col-lg-3 p-2 g-2">
+            </div>
+          </div>
         </div>
       </div>
-
+      
       <!-- Display Unsplash Images base on user selected category -->
       <div class="row p-0 g-0">
         <div class="col-1 col-sm-2 col-md-2 col-lg-3 p-2 g-2">

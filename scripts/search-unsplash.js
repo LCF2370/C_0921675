@@ -6,19 +6,19 @@ $(document).ready(function() {
 
         // Make a GET request to the Unsplash API
         $.get(apiUrl, function(response) {
-            // Clear the image container
+            // Clear the view image container
             $('#viewImage').empty();
             var count = 0;
             // Loop through the response and display images
             response.results.forEach(function(photo) {
                 count += 1;
-                const imageUrl = photo.urls.small;
+                const imageUrl = photo.urls.regular;
                 if (count == 1){
-                    const imageElement = `<div class="carousel-item active"><img src="${imageUrl}" alt="Unsplash Image" class="rounded mx-auto d-block"></div>`;
+                    const imageElement = `<div class="carousel-item active"><img src="${imageUrl}" height="400" alt="Unsplash Image" class="rounded mx-auto d-block"></div>`;
                     $('#viewImage').append(imageElement);
                 }
                 else{
-                    const imageElement = `<div class="carousel-item"><img src="${imageUrl}" alt="Unsplash Image" class="rounded mx-auto d-block"></div>`;
+                    const imageElement = `<div class="carousel-item"><img src="${imageUrl}" height="400" alt="Unsplash Image" class="rounded mx-auto d-block"></div>`;
                     $('#viewImage').append(imageElement);
                 }
             });

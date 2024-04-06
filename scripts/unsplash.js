@@ -2,7 +2,7 @@
 var paragraph = document.getElementById("cityNameValue");
 
 // Get the text content of the element
-var cityName = paragraph.textContent + "city";
+var cityName = paragraph.textContent + " environment";
 
 const apiUrl = 'https://api.unsplash.com/photos/random';
 const accessKey = 'S0rQa8LyyPQBT-Q0KXHxLHYE1T_nHUbJMsgMoiphF4w';

@@ -206,13 +206,13 @@ function weatherIcon(w, timeForecast){
     if(timeWeather[1] == 'AM'){
         if (hr > 5 && hr < 12){
             if(weather.indexOf("cloud") !== -1){return timeIcon = 'images/weather-icon/sunny-cloud.svg';}
-            if(weather.indexOf("rain") !== -1){return timeIcon = 'images/weather-icon/rainy-cloud.svg';}
+            if(weather.indexOf("rain") !== -1){return timeIcon = 'images/weather-icon/rainy.svg';}
             if(weather.indexOf("snow") !== -1){return timeIcon = 'images/weather-icon/snowy-cloud.svg';}
             return timeIcon = 'images/weather-icon/sunny.svg';
         }
         if (hr == 12 || (hr > 0 && hr < 6)){
             if(weather.indexOf("cloud") !== -1){return timeIcon = 'images/weather-icon/night-cloudy.svg';}
-            if(weather.indexOf("rain") !== -1){return timeIcon = 'images/weather-icon/rainy-cloud.svg';}
+            if(weather.indexOf("rain") !== -1){return timeIcon = 'images/weather-icon/rainy.svg';}
             if(weather.indexOf("snow") !== -1){return timeIcon = 'images/weather-icon/snowy-cloud.svg';}
             return timeIcon = 'images/weather-icon/night-sky.svg';
         }
@@ -220,13 +220,13 @@ function weatherIcon(w, timeForecast){
     if(timeWeather[1] == 'PM'){
         if (hr > 5 && hr < 12){
             if(weather.indexOf("cloud") !== -1){return timeIcon = 'images/weather-icon/night-cloudy.svg';}
-            if(weather.indexOf("rain") !== -1){return timeIcon = 'images/weather-icon/rainy-cloud.svg';}
+            if(weather.indexOf("rain") !== -1){return timeIcon = 'images/weather-icon/rainy.svg';}
             if(weather.indexOf("snow") !== -1){return timeIcon = 'images/weather-icon/snowy-cloud.svg';}
             return timeIcon = 'images/weather-icon/night-sky.svg';
         }
         if (hr == 12 || (hr > 0 && hr < 6)){
             if(weather.indexOf("cloud") !== -1){return timeIcon = 'images/weather-icon/sunny-cloud.svg';}
-            if(weather.indexOf("rain") !== -1){return timeIcon = 'images/weather-icon/rainy-cloud.svg';}
+            if(weather.indexOf("rain") !== -1){return timeIcon = 'images/weather-icon/rainy.svg';}
             if(weather.indexOf("snow") !== -1){return timeIcon = 'images/weather-icon/snowy-cloud.svg';}
             return timeIcon = 'images/weather-icon/sunny-cloud.svg';
         }

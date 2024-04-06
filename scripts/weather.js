@@ -135,6 +135,12 @@ $(document).ready(function(){
                                 document.getElementById("sea_level").innerHTML = data.list[1].main.sea_level + " meters above sea surface.";
                                 document.getElementById("visibility").innerHTML = "Visibility radius is " + data.list[1].visibility + " meters.";
                                 
+                                // Weather Icon
+                                // Get the reference to the image element
+                                document.querySelector('#forecast-1').src = weatherIcon(meridianArray[0]);
+                                document.querySelector('#forecast-2').src = weatherIcon(meridianArray[1]);
+                                document.querySelector('#forecast-3').src = weatherIcon(meridianArray[2]);
+
                                 //Variable declaration
                                 let w = data.list[1].wind.deg;
                                 let direction = '';
@@ -184,4 +190,26 @@ function initCap(str) {
         splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
     }
     return splitStr.join(' '); 
+}
+
+function weatherIcon(timeForecast){
+    var timeWeather = timeForecast.split(" ");
+    var hr = parseInt(timeWeather[0]);
+    console.log(hr + " " + timeWeather)
+    if(timeWeather[1] == 'AM'){
+        if (hr > 5 && hr < 12){
+            return timeIcon = 'images/weather-icon/sunny-cloud.svg'
+        }
+        if (hr == 12 || (hr > 0 && hr < 6)){
+            return timeIcon = 'images/weather-icon/night-sky.svg'
+        }
+    }
+    if(timeWeather[1] == 'PM'){
+        if (hr > 5 && hr < 12){
+            return timeIcon = 'images/weather-icon/night-sky.svg'
+        }
+        if (hr == 12 || (hr > 0 && hr < 6)){
+            return timeIcon = 'images/weather-icon/sunny-cloud.svg'            
+        }
+    }
 }

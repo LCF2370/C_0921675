@@ -130,7 +130,9 @@ $(document).ready(function(){
                                 /**Send data to HTML to display the weather information using getElementID
                                 *  The following data retrieved are temperature in every 3 hours, sea level, ground level, visibility
                                 */
-                                console.log(data);
+                                let weatherForecast1 = initCap(data.list[0].weather[0].description);
+                                let weatherForecast2 = initCap(data.list[1].weather[0].description);
+                                let weatherForecast3 = initCap(data.list[2].weather[0].description);
                                 document.getElementById("forecast-today-temp2").innerHTML = Math.round(data.list[1].main.temp) +"&deg;C";
                                 document.getElementById("forecast-today-temp3").innerHTML = Math.round(data.list[2].main.temp) +"&deg;C";
                                 document.getElementById("forecast-hour1").innerHTML = meridianArray[0];
@@ -142,12 +144,12 @@ $(document).ready(function(){
                                 
                                 // Weather Icon
                                 // Get the reference to the image element
-                                document.querySelector('#forecast-1').src = weatherIcon(meridianArray[0]);
-                                document.querySelector('#forecast-2').src = weatherIcon(meridianArray[1]);
-                                document.querySelector('#forecast-3').src = weatherIcon(meridianArray[2]);
-                                document.querySelector('#forecast-1-lg').src = weatherIcon(meridianArray[0]);
-                                document.querySelector('#forecast-2-lg').src = weatherIcon(meridianArray[1]);
-                                document.querySelector('#forecast-3-lg').src = weatherIcon(meridianArray[2]);
+                                document.querySelector('#forecast-1').src = weatherIcon(weatherForecast1, meridianArray[0]);
+                                document.querySelector('#forecast-2').src = weatherIcon(weatherForecast2, meridianArray[1]);
+                                document.querySelector('#forecast-3').src = weatherIcon(weatherForecast3, meridianArray[2]);
+                                document.querySelector('#forecast-1-lg').src = weatherIcon(weatherForecast1, meridianArray[0]);
+                                document.querySelector('#forecast-2-lg').src = weatherIcon(weatherForecast2, meridianArray[1]);
+                                document.querySelector('#forecast-3-lg').src = weatherIcon(weatherForecast3, meridianArray[2]);
 
                                 //Variable declaration
                                 let w = data.list[1].wind.deg;
@@ -195,23 +197,36 @@ function initCap(str) {
     return splitStr.join(' '); 
 }
 
-function weatherIcon(timeForecast){
+function weatherIcon(w, timeForecast){
     var timeWeather = timeForecast.split(" ");
     var hr = parseInt(timeWeather[0]);
+    let weather = w.toLowerCase();
     console.log(hr + " " + timeWeather)
     if(timeWeather[1] == 'AM'){
         if (hr > 5 && hr < 12){
-            return timeIcon = 'images/weather-icon/sunny-cloud.svg';
+            if(weather.indexOf("cloud") !== -1){return timeIcon = 'images/weather-icon/sunny-cloud.svg';}
+            if(weather.indexOf("rain") !== -1){return timeIcon = 'images/weather-icon/rainy-cloud.svg';}
+            if(weather.indexOf("snow") !== -1){return timeIcon = 'images/weather-icon/snowy-cloud.svg';}
+            return timeIcon = 'images/weather-icon/sunny.svg';
         }
         if (hr == 12 || (hr > 0 && hr < 6)){
+            if(weather.indexOf("cloud") !== -1){return timeIcon = 'images/weather-icon/night-cloudy.svg';}
+            if(weather.indexOf("rain") !== -1){return timeIcon = 'images/weather-icon/rainy-cloud.svg';}
+            if(weather.indexOf("snow") !== -1){return timeIcon = 'images/weather-icon/snowy-cloud.svg';}
             return timeIcon = 'images/weather-icon/night-sky.svg';
         }
     }
     if(timeWeather[1] == 'PM'){
         if (hr > 5 && hr < 12){
+            if(weather.indexOf("cloud") !== -1){return timeIcon = 'images/weather-icon/night-cloudy.svg';}
+            if(weather.indexOf("rain") !== -1){return timeIcon = 'images/weather-icon/rainy-cloud.svg';}
+            if(weather.indexOf("snow") !== -1){return timeIcon = 'images/weather-icon/snowy-cloud.svg';}
             return timeIcon = 'images/weather-icon/night-sky.svg';
         }
         if (hr == 12 || (hr > 0 && hr < 6)){
+            if(weather.indexOf("cloud") !== -1){return timeIcon = 'images/weather-icon/sunny-cloud.svg';}
+            if(weather.indexOf("rain") !== -1){return timeIcon = 'images/weather-icon/rainy-cloud.svg';}
+            if(weather.indexOf("snow") !== -1){return timeIcon = 'images/weather-icon/snowy-cloud.svg';}
             return timeIcon = 'images/weather-icon/sunny-cloud.svg';
         }
     }

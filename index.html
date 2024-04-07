@@ -63,81 +63,11 @@
         <!-- Collapsable Weather Information: (3rd layer in my web application) -->
         <div class="container-sm p-1 g-1" id="weatherInfo">
           <!-- 1st sub-section displaying the most important weather information -->
-          <div class="row p-0 g-0">
-            <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">           
-            </div>
-            
-            <!-- This only display in smaller screen like phones -->
-            <div class="d-block d-lg-none col-12 p-1 g-1 rounded-1">
-              <div class="card text-bg-light">
-                <img id="weather-info-bg" src="" class="card-img" alt="sunrise mountain">
-                <div class="card-img-overlay text-light bg-dark bg-opacity-50">
-                    <h5 id="temperature" class="card-title display-1 text-light"></h5>                                      
-                    <p id="weather-info-1" class="card-text"></p>
-                </div>
-              </div>
-
-              <!-- 2nd sub-section for additional information like Humidity, Wind Speed, and Pressure Infor Card Display -->  
-              <div class="row row-cols-3 row-cols-sm-3 p-2 g-1 text-center fs-6">
-                <div class="col-0 col-sm-0 col-md-0 col-lg-1"></div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-10">
-                    <div class="row row-cols-3 w-100 g-0">                      
-                      <!--Humidity-->
-                      <div class="col-4 col-sm-4 col-md-4 col-lg-4  bg-opacity-75">
-                        <div class="card mb-3 rounded-5 rounded-end-0" style="max-width: 540px;">
-                          <div class="row g-0">
-                            <div class="col-md-4">
-                              <img src="images/widget-icon/humidity.svg" class="img-fluid rounded-start" alt="humidity icon">
-                            </div>
-                            <div class="col-md-8">
-                              <div class="card-body">
-                                <h6 id="humidityInfo" class="card-title"></h6>
-                                <p class="card-text">Humidity</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!--Wind Speed-->
-                      <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
-                        <div class="card mb-3 rounded-0" style="max-width: 540px;">
-                          <div class="row g-0">
-                            <div class="col-md-4">
-                              <img src="images/widget-icon/wind.svg" class="img-fluid rounded-start" alt="wind icon">
-                            </div>
-                            <div class="col-md-8">
-                              <div class="card-body">
-                                <h6 id="windInfo" class="card-title">Card title</h6>
-                                <p class="card-text">Wind</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!--Pressure-->
-                      <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
-                        <div class="card mb-3 rounded-5 rounded-start-0" style="max-width: 540px;">
-                          <div class="row g-0">
-                            <div class="col-md-4">
-                              <img src="images/widget-icon/pressure.svg" class="img-fluid rounded-start" alt="pressure icon">
-                            </div>
-                            <div class="col-md-8">
-                              <div class="card-body">
-                                <h6 id="pressureInfo" class="card-title"></h6>
-                                <p class="card-text">Pressure</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-                <div class="col-0 col-sm-0 col-md-0 col-lg-1"></div>
-              </div>            
-            </div>
-            
+          <div class="d-none d-lg-block row row-cols-lg-4 p-0 g-0">
+            <div class="col-1 col-lg-1 p-1 g-1">
+            </div> 
             <!-- This only display in larger screen like tablet, desktop, or laptop -->
-            <div class="d-none d-lg-block col-7 col-sm-7 col-md-7 col-lg-7 p-1 g-1 rounded-1">
+            <div class="col-5 col-lg-5 p-1 g-1 rounded-1">
               <div class="card text-bg-light">
                 <img id="weather-info-bg-lg" src="" class="card-img" alt="sunrise mountain">
                 <div class="card-img-overlay text-light bg-dark bg-opacity-50">
@@ -146,13 +76,11 @@
                 </div>
               </div>          
             </div>
-
             <!-- Sidebar: Digital Clock per Timezone,Humidity, Wind Speed, and Pressure Information
                  This only display in larger screen like desktop, tablet, or laptop-->
-            <div class="d-none d-lg-block col-3 col-sm-3 col-md-3 col-lg-3 p-1 g-1 border border-0 rounded-1">
-              <div class="row row-cols-3 row-cols-sm-3 p-0 g-0 m-0 text-center fs-6 border border-0">
-                <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-0 g-0 m-0 border border-0"></div>
-                <div class="col-12 col-sm-10 col-md-10 col-lg-10 p-0 g-0 m-0 border border-0">
+            <div class="col-5 col-lg-5 p-1 g-1 border border-0 rounded-1">
+              <div class="row row-cols-3 row-cols-lg-3 p-0 g-0 m-0 text-center fs-6 border border-0">
+                <div class="col-12 p-0 g-0 m-0 border border-0">
                   <div class="card border border-0" style="width: 18rem;">
                     <!-- Digital Clock for every timezone -->
                     <div class="card-header">
@@ -216,11 +144,82 @@
                     </ul>
                   </div>
                 </div>
-                <div class="col-0 col-sm-1 col-md-1 col-lg-1"></div>
               </div> 
             </div>
-            <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">
+            <div class="col-1 col-lg-1 p-1 g-1">
             </div> 
+          </div>
+
+          <div class="d-block d-lg-none row p-0 g-0">
+            <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">           
+            </div>            
+            <!-- This only display in smaller screen like phones -->
+            <div class="col-12 p-1 g-1 rounded-1">
+              <div class="card text-bg-light">
+                <img id="weather-info-bg" src="" class="card-img" alt="sunrise mountain">
+                <div class="card-img-overlay text-light bg-dark bg-opacity-50">
+                    <h5 id="temperature" class="card-title display-1 text-light"></h5>                                      
+                    <p id="weather-info-1" class="card-text"></p>
+                </div>
+              </div>
+              <!-- 2nd sub-section for additional information like Humidity, Wind Speed, and Pressure Infor Card Display -->  
+              <div class="row row-cols-3 row-cols-sm-3 p-2 g-1 text-center fs-6">
+                <div class="col-0 col-sm-0 col-md-0 col-lg-1"></div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-10">
+                    <div class="row row-cols-3 w-100 g-0">                      
+                      <!--Humidity-->
+                      <div class="col-4 col-sm-4 col-md-4 col-lg-4  bg-opacity-75">
+                        <div class="card mb-3 rounded-5 rounded-end-0" style="max-width: 540px;">
+                          <div class="row g-0">
+                            <div class="col-md-4">
+                              <img src="images/widget-icon/humidity.svg" class="img-fluid rounded-start" alt="humidity icon">
+                            </div>
+                            <div class="col-md-8">
+                              <div class="card-body">
+                                <h6 id="humidityInfo" class="card-title"></h6>
+                                <p class="card-text">Humidity</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--Wind Speed-->
+                      <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
+                        <div class="card mb-3 rounded-0" style="max-width: 540px;">
+                          <div class="row g-0">
+                            <div class="col-md-4">
+                              <img src="images/widget-icon/wind.svg" class="img-fluid rounded-start" alt="wind icon">
+                            </div>
+                            <div class="col-md-8">
+                              <div class="card-body">
+                                <h6 id="windInfo" class="card-title">Card title</h6>
+                                <p class="card-text">Wind</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--Pressure-->
+                      <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
+                        <div class="card mb-3 rounded-5 rounded-start-0" style="max-width: 540px;">
+                          <div class="row g-0">
+                            <div class="col-md-4">
+                              <img src="images/widget-icon/pressure.svg" class="img-fluid rounded-start" alt="pressure icon">
+                            </div>
+                            <div class="col-md-8">
+                              <div class="card-body">
+                                <h6 id="pressureInfo" class="card-title"></h6>
+                                <p class="card-text">Pressure</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-0 col-sm-0 col-md-0 col-lg-1"></div>
+              </div>            
+            </div>            
           </div>
 
           <!-- 3rd sub-section with more information to display in --> 

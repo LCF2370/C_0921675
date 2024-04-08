@@ -2,8 +2,10 @@ Student Name: Ralph Eimerson Ompoc
 Student ID: c0921675
 Date: April 8, 2024
 
+Final Assignment: JavaScript and jQuery Web Application
+
 Web Page Structure: ----------------------------------------------------------
-Panel 1: Display a banner with my name, copyright message, and year of creation with my student ID number.
+Panel 1: Display banner with my name, copyright message, and year of creation with my student ID number.
 Panel 2: Input boxes for 
     -	City weather Search box with search button that fetched data from OpenWeatherMap API
     -	Picture Search (Select type of input box) that fetched data from Unsplash API
@@ -15,7 +17,6 @@ Panel 3:
         -	Display 3 weather forecast for every 3hours.
         -	Additional information of the city population, sea level, wind direction, and visibility.
 Panel 4: Display pictures selected category fetched from Unsplash, refreshed every 20 seconds to fetched random images.
-Additional Panel: My own design of my logo WeDir (Weather Direct)
 
 Applications/Tools: -----------------------------------------------------
 1. Visual Studio Code - Coding Environment for HTML, CSS, and JavaScript.

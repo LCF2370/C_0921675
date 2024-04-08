@@ -1,0 +1,859 @@
+Student Name: Ralph Eimerson Ompoc
+Student ID: c0921675
+Date: April 8, 2024
+
+Web Page Structure: ----------------------------------------------------------
+Panel 1: Display a banner with my name, copyright message, and year of creation with my student ID number.
+Panel 2: Input boxes for 
+    -	City weather Search box with search button that fetched data from OpenWeatherMap API
+    -	Picture Search (Select type of input box) that fetched data from Unsplash API
+Panel 3: 
+    -	Display current date and time. 
+    -	Display weather information from specified city fetched from OpenWeatherMap.
+    -	Display Time Zone from specified city.
+    -   Additional information:
+        -	Display 3 weather forecast for every 3hours.
+        -	Additional information of the city population, sea level, wind direction, and visibility.
+Panel 4: Display pictures selected category fetched from Unsplash, refreshed every 20 seconds to fetched random images.
+Additional Panel: My own design of my logo WeDir (Weather Direct)
+
+Applications/Tools: -----------------------------------------------------
+1. Visual Studio Code - Coding Environment for HTML, CSS, and JavaScript.
+2. Inkscape - To create my own weather image background, weather icon forecast, logo, and icon.
+3. GitHub - Used for versioning control of my web development.
+4. Google Chrome - To test my web application functionality from different viewports like
+		  mobile phone, tablet, desktop, and laptop.
+
+Website Link: ----------------------------------------------------------
+	https://lcf2370.github.io/C_0921675/
+
+Languages/Libraries: ----------------------------------------------------
+1. HTML5, CSS, JavaScript, Json, AJAX and JQuery
+2. API used to fetch images and weather informations
+    - OpenWeatherMap
+    - Unsplash
+3. CSS/Google Fonts/Bootstrap v5.3.3 
+    - Used to style my user interfaces
+    - Responsive UI/UX in either desktop, laptop, tablet, or mobile phones using Bootstrap
+    - Using Google Fonts to style my text
+        - Merriweather (Default font style)
+        - Orbitron (For Digital Clock font style)
+
+C_0921675/images ----------------------------------------------------
+C_0921675/images/icons
+    - icon for search button
+C_0921675/images/weather-bg
+    - weather image background base on the current weather condition
+C_0921675/images/weather-icon
+    - weather image icon base on the current weather forecast condition 
+C_0921675/images/widget-icon
+    - weather widget image icon for humidity, wind, and pressure 
+C_0921675/images/logo.svg
+    - Logo designed WeDir
+Data Fetch from API-Unsplash: -------------------------------------
+C_0921675/scripts/search-unsplash.js
+/**
+ * Student Name: Ralph Eimerson Ompoc
+ * Student ID: c0921675
+ * Date: April 8, 2024
+ */
+$(document).ready(function() {
+    // Function to fetch images from Unsplash API
+      function fetchImages() {
+        /*Constant value for API URL, access key from Unsplash, 
+        * category, size of the image, image height
+        */
+        const query = $('#image-unsplash').val();
+        const apiUrl = 'https://api.unsplash.com/photos/random';
+        const accessKey = 'S0rQa8LyyPQBT-Q0KXHxLHYE1T_nHUbJMsgMoiphF4w';
+        const category = query;
+        const imageSize = 'regular';
+        const imageHeight = 500;
+        
+        function fetchRandomImage() {
+            //Constant value to fetch image from Unsplash
+            const url = `${apiUrl}?client_id=${accessKey}&query=${category}&orientation=landscape&content_filter=high&featured=true&h=${imageHeight}`;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const imageUrl = data.urls[imageSize];
+                    document.getElementById('randomImage').src = imageUrl;
+                    document.getElementById('randomImage').height = imageHeight;
+                })
+                .catch(error => console.error('Error fetching random image:', error));
+        }
+        // Setting interval by 20 seconds to change in ramdom images base on category
+        fetchRandomImage();
+        setInterval(fetchRandomImage, 20000);
+    }
+  
+    // An event listener for the select type input box
+    $('#image-unsplash').click(function() {
+      // Constant variable for text value from <select> wiht an id="image-unsplash"
+      const selectImage = $('#image-unsplash').val();
+      if(selectImage != '' && selectImage != 'Select Category'){
+          document.getElementById("viewImage-container").style.display = "block";
+          fetchImages();
+      }
+      else{
+          $("#error").html('Field cannot be empty')
+          document.getElementById("viewImage-container").style.display = "none";
+      }
+    });
+  });
+
+Data Fetch from API-OpenWeatherMap: -------------------------------------
+C_0921675/scripts/weather.js
+/**
+ * Student Name: Ralph Eimerson Ompoc
+ * Student ID: c0921675
+ * Date: April 8, 2024
+ */
+
+//Variable declaration
+let latitude = 0;
+let longitude = 0;
+let city = '';
+//Using javascript
+$(document).ready(function(){
+    //Checks if the search button is clicked by the user with id='checkWeather'
+    $('#checkWeather').click(function(){  
+        //Variable declaration for the city name being entered by the user from input text field with id='cityNameValue'
+        var cityNameValue = $("#cityNameValue").val();
+        //var cityName_temp = cityName.textContent;
+        //Conditional statement and validates if text field is empty or not            
+        if(cityNameValue != ''){
+            function weatherUpdate(){
+            var cityName = $("#cityNameValue").val();
+            //Using Asynchronous JavaScript to fetch data from API OpenWeatherMap
+                $.ajax({
+                    //URL includes the API source/variable cityName/preferred units which I used is metric/APPID = equivalent to my API key
+                    url: 'https://api.openweathermap.org/data/2.5/weather?q='+cityName+"&units=metric"
+                    +"&APPID=0e091e0fdbc8134a1400945ac6046033",
+                    //GET method which only retrieve data from specified url
+                    type: 'GET',
+                    dataType: 'jsonp',
+                    success: function(data){
+                        //Variable declaration                    
+                        latitude = data.coord.lat;
+                        longitude = data.coord.lon;                    
+                        let weather = initCap(data.weather[0].description);
+                        //Define the current time of specified location using longitude
+                        var timezoneOffset = longitude / 15;
+                        var date = new Date();
+                        document.getElementById("currentDT").innerHTML = dateTime(date);
+                        date.setHours(date.getUTCHours() + timezoneOffset);
+                        var h = date.getHours();
+                        var min = date.getMinutes();
+                        var hr = h;
+                        if(hr >= 12){ var meridian = "PM" }
+                        else{ var meridian = "AM"}
+                        if(hr > 12){ hr=Math.abs(hr - 12) }
+                        var m = "" + min;
+                        if (m.length < 2) { m = "0" + m}
+                        //Unhide the weather information section
+                        document.getElementById("weatherInfo").style.display = "block";
+        
+                        /**Send data to HTML to display the weather information using getElementID
+                        *  The following data retrieved are temperature, city name, country acronymn, feels like temperature
+                        *  weather, maximum temperature, minimum temperature, humidity, wind speed, pressure
+                        */
+                        document.getElementById("temperature").innerHTML = Math.round(data.main.temp) +"&deg;C";
+                        document.getElementById("temperature-lg").innerHTML = Math.round(data.main.temp) +"&deg;C";
+                        document.getElementById("weather-info-1").innerHTML = data.name + ", " +data.sys.country + "<br>" + "Feels Like " + Math.round(data.main.feels_like) +"&deg;C" + "<br>" + Math.round(data.main.temp_max) +"&deg;C" + " / " + Math.round(data.main.temp_min) +"&deg;C" + "<br>" +  weather;
+                        document.getElementById("weather-info-1-lg").innerHTML = data.name + ", " +data.sys.country + "<br>" + "Feels Like " + Math.round(data.main.feels_like) +"&deg;C" + "<br>" + Math.round(data.main.temp_max) +"&deg;C" + " / " + Math.round(data.main.temp_min) +"&deg;C" + "<br>" +  weather;
+                        document.getElementById("humidityInfo").innerHTML = data.main.humidity + "%";
+                        document.getElementById("windInfo").innerHTML = Math.round(data.wind.speed) +" m/s";
+                        document.getElementById("pressureInfo").innerHTML = data.main.pressure + " hPa";
+                        document.getElementById("humidityInfo_lg").innerHTML = data.main.humidity + "%";
+                        document.getElementById("windInfo_lg").innerHTML = Math.round(data.wind.speed) +" m/s";
+                        document.getElementById("pressureInfo_lg").innerHTML = data.main.pressure + " hPa";
+                        document.getElementById("forecast-today-temp1").innerHTML = Math.round(data.main.temp) +"&deg;C";
+                        document.getElementById("digitalClock").innerHTML = hr + ":" + m + " " + meridian + " | " + data.name + ", " +data.sys.country;
+                        document.getElementById("digitalClock-lg").innerHTML = hr + ":" + m + " " + meridian + "<br> <h6>" + data.name + ", " +data.sys.country + "<h6>";
+                        // Weather information background
+                        document.getElementById('weather-info-bg').src = weatherBG(weather, hr, meridian);
+                        document.getElementById('weather-info-bg-lg').src = weatherBG(weather, hr, meridian);
+
+                        //Creates an array of time forecast
+                        var timeZoneArray = [];
+                        for (var i = 0; i < 3; i++) {
+                            let stringHour = h;
+                            timeZoneArray.push(stringHour);
+                            h += 3;
+                        } 
+                        var meridianArray = [];
+                        for (var i = 0; i < 3; i++) {
+                            if (timeZoneArray[i] >= 0 && timeZoneArray[i] < 12){
+                                var meridian = "AM";                                
+                                let stringMeridian = timeZoneArray[i] + " " + meridian;
+                                meridianArray.push(stringMeridian); 
+                            }
+                            else if(timeZoneArray[i] >= 12 && timeZoneArray[i] < 24){ 
+                                var meridian = "PM"; 
+                                var hrs = 0;                           
+                                if(timeZoneArray[i] > 12){ 
+                                    hrs=Math.abs(timeZoneArray[i] - 12);
+                                    let stringMeridian =hrs + " " + meridian;
+                                    meridianArray.push(stringMeridian);
+                                }else{
+                                    let stringMeridian =timeZoneArray[i] + " " + meridian;
+                                    meridianArray.push(stringMeridian);
+                                }
+                            }
+                            else{ 
+                                var meridian = "AM";
+                                if(timeZoneArray[i] > 24){ 
+                                    hrs=Math.abs(timeZoneArray[i] - 24);
+                                    let stringMeridian = hrs + " " + meridian;
+                                    meridianArray.push(stringMeridian); 
+                                }                           
+                                else if(timeZoneArray[i] == 24){
+                                    hrs=Math.abs(timeZoneArray[i] - 12);
+                                    let stringMeridian = hrs + " " + meridian;
+                                    meridianArray.push(stringMeridian);
+                                }
+                                else{
+                                    let stringMeridian = timeZoneArray[i] + " " + meridian;
+                                    meridianArray.push(stringMeridian);
+                                }
+                            }
+                        }
+                        //Variable assigning a string value that includes city name and country acronym 
+                        city = data.name + ", " +data.sys.country;
+                        $.ajax({                        
+                            url: 'https://api.openweathermap.org/data/2.5/forecast?lat='+ latitude +'&lon='+ longitude + "&units=metric" +
+                            "&appid=0e091e0fdbc8134a1400945ac6046033",
+                            type: 'GET',
+                            dataType: 'jsonp',
+                            success: function(data){
+                                /**Send data to HTML to display the weather information using getElementID
+                                *  The following data retrieved are temperature in every 3 hours, sea level, ground level, visibility
+                                */
+                                let weatherForecast1 = initCap(data.list[0].weather[0].description);
+                                let weatherForecast2 = initCap(data.list[1].weather[0].description);
+                                let weatherForecast3 = initCap(data.list[2].weather[0].description);
+                                document.getElementById("forecast-today-temp2").innerHTML = Math.round(data.list[1].main.temp) +"&deg;C";
+                                document.getElementById("forecast-today-temp3").innerHTML = Math.round(data.list[2].main.temp) +"&deg;C";
+                                document.getElementById("forecast-hour1").innerHTML = meridianArray[0];
+                                document.getElementById("forecast-hour2").innerHTML = meridianArray[1];
+                                document.getElementById("forecast-hour3").innerHTML = meridianArray[2];
+                                document.getElementById("ground_level").innerHTML = data.list[1].main.grnd_level + " meters above mean sea level.";
+                                document.getElementById("sea_level").innerHTML = data.list[1].main.sea_level + " meters above sea surface.";
+                                document.getElementById("visibility").innerHTML = "Visibility radius is " + data.list[1].visibility + " meters.";
+                                
+                                // Weather Icon
+                                // Get the reference to the image element
+                                document.querySelector('#forecast-1').src = weatherIcon(weatherForecast1, meridianArray[0]);
+                                document.querySelector('#forecast-2').src = weatherIcon(weatherForecast2, meridianArray[1]);
+                                document.querySelector('#forecast-3').src = weatherIcon(weatherForecast3, meridianArray[2]);
+                                document.querySelector('#forecast-1-lg').src = weatherIcon(weatherForecast1, meridianArray[0]);
+                                document.querySelector('#forecast-2-lg').src = weatherIcon(weatherForecast2, meridianArray[1]);
+                                document.querySelector('#forecast-3-lg').src = weatherIcon(weatherForecast3, meridianArray[2]);
+
+                                //Variable declaration
+                                let w = data.list[1].wind.deg;
+                                let direction = '';
+                                let p = data.city.population;
+                                p = p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        
+                                //Conditional statement to label the wind direction and labeling the wind direction
+                                if(w > 0 && w < 90){direction = 'North/East'}
+                                if(w > 90 && w < 180){direction = 'South/East'}
+                                if(w > 180 && w < 270){direction = 'South/West'}
+                                if(w > 270 && w < 360){direction = 'North/West'}
+                                if( w == 0 || w == 360){direction='North'};
+                                if( w == 90){direction='East'};
+                                if( w == 180){direction='South'};
+                                if( w == 270){direction='West'};
+        
+                                /**Send data to HTML to display the weather information using getElementID
+                                *  The following data retrieved are population and angle of the wind direction,
+                                */
+                                document.getElementById("wind_direction").innerHTML = "Wind direction at " + data.list[1].wind.deg + "&deg; " + direction +".";
+                                document.getElementById("population").innerHTML = city + " currently in " + p + " population.";
+                            }
+                        });
+                    }
+                });
+            }
+            // Set interval weather update and digital update for every 1 second
+            weatherUpdate();
+            setInterval(weatherUpdate, 1000);
+        }
+        //Conditional statement if cityName input textfield is empty it will hide the weather information section and no data retrieved
+        else{
+            $("#error").html('Field cannot be empty')
+            document.getElementById("weatherInfo").style.display = "none";
+        }
+    });
+});
+
+//Functions that will change Initial letter of each word in UPPERCASE
+function initCap(str) {
+    var splitStr = str.toLowerCase().split(' ');
+    for (var i = 0; i < splitStr.length; i++) {
+        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+    }
+    return splitStr.join(' '); 
+}
+/* Function to determine the proper weather icon for three weather forecast in every 3 hours
+*       Available weather icon are sunny cloud, rainy, snowy and clear sky for
+*       everning or daylight.
+*/
+function weatherIcon(w, timeForecast){
+    var timeWeather = timeForecast.split(" ");
+    var hr = parseInt(timeWeather[0]);
+    let weather = w.toLowerCase();
+    if(timeWeather[1] == 'AM'){
+        if (hr > 5 && hr < 12){
+            if(weather.indexOf("cloud") !== -1){return timeIcon = 'images/weather-icon/sunny-cloud.svg';}
+            if(weather.indexOf("rain") !== -1){return timeIcon = 'images/weather-icon/rainy.svg';}
+            if(weather.indexOf("snow") !== -1){return timeIcon = 'images/weather-icon/snowy-cloud.svg';}
+            return timeIcon = 'images/weather-icon/sunny.svg';
+        }
+        if (hr == 12 || (hr > 0 && hr < 6)){
+            if(weather.indexOf("cloud") !== -1){return timeIcon = 'images/weather-icon/night-cloudy.svg';}
+            if(weather.indexOf("rain") !== -1){return timeIcon = 'images/weather-icon/rainy.svg';}
+            if(weather.indexOf("snow") !== -1){return timeIcon = 'images/weather-icon/snowy-cloud.svg';}
+            return timeIcon = 'images/weather-icon/night-sky.svg';
+        }
+    }
+    if(timeWeather[1] == 'PM'){
+        if (hr > 5 && hr < 12){
+            if(weather.indexOf("cloud") !== -1){return timeIcon = 'images/weather-icon/night-cloudy.svg';}
+            if(weather.indexOf("rain") !== -1){return timeIcon = 'images/weather-icon/rainy.svg';}
+            if(weather.indexOf("snow") !== -1){return timeIcon = 'images/weather-icon/snowy-cloud.svg';}
+            return timeIcon = 'images/weather-icon/night-sky.svg';
+        }
+        if (hr == 12 || (hr > 0 && hr < 6)){
+            if(weather.indexOf("cloud") !== -1){return timeIcon = 'images/weather-icon/sunny-cloud.svg';}
+            if(weather.indexOf("rain") !== -1){return timeIcon = 'images/weather-icon/rainy.svg';}
+            if(weather.indexOf("snow") !== -1){return timeIcon = 'images/weather-icon/snowy-cloud.svg';}
+            return timeIcon = 'images/weather-icon/sunny-cloud.svg';
+        }
+    }
+}
+/* Function to determine the proper background image for the weather information
+*       available background images are cloudy sky, rainy, snowy and clear sky for
+*       everning or daylight.
+*/
+function weatherBG(w, h, m){
+    var timeWeather = m;
+    var hr = parseInt(h);
+    let weather = w.toLowerCase();
+    if(timeWeather == 'AM'){
+        if (hr > 5 && hr < 12){
+            if(weather.indexOf("cloud") !== -1){return weatherBg = 'images/weather-bg/cloudy-sky-AM.svg';}
+            if(weather.indexOf("rain") !== -1){return weatherBg = 'images/weather-bg/rainy-sky-AM.svg';}
+            if(weather.indexOf("snow") !== -1){return weatherBg = 'images/weather-bg/snowy-sky-AM.svg';}
+            return weatherBg = 'images/weather-bg/clear-sky-AM.svg';
+        }
+        if (hr == 12 || (hr > 0 && hr < 6)){
+            if(weather.indexOf("cloud") !== -1){return weatherBg = 'images/weather-bg/cloudy-sky-PM.svg';}
+            if(weather.indexOf("rain") !== -1){return weatherBg = 'images/weather-bg/rainy-sky-PM.svg';}
+            if(weather.indexOf("snow") !== -1){return weatherBg = 'images/weather-bg/snowy-sky-PM.svg';}
+            return weatherBg = 'images/weather-bg/clear-sky-PM.svg';
+        }
+    }
+    if(timeWeather == 'PM'){
+        if (hr > 5 && hr < 12){
+            if(weather.indexOf("cloud") !== -1){return weatherBg = 'images/weather-bg/cloudy-sky-PM.svg';}
+            if(weather.indexOf("rain") !== -1){return weatherBg = 'images/weather-bg/rainy-sky-PM.svg';}
+            if(weather.indexOf("snow") !== -1){return weatherBg = 'images/weather-bg/snowy-sky-PM.svg';}
+            return weatherBg = 'images/weather-bg/clear-sky-PM.svg';
+        }
+        if (hr == 12 || (hr > 0 && hr < 6)){
+            if(weather.indexOf("cloud") !== -1){return weatherBg = 'images/weather-bg/cloudy-sky-AM.svg';}
+            if(weather.indexOf("rain") !== -1){return weatherBg = 'images/weather-bg/rainy-sky-AM.svg';}
+            if(weather.indexOf("snow") !== -1){return weatherBg = 'images/weather-bg/snowy-sky-AM.svg';}
+            return weatherBg = 'images/weather-bg/clear-sky-AM.svg';
+        }
+    }
+}
+// Function for the current date and time displayed in Panel 3 
+function dateTime(dateValue){
+    var dateTimeValue = dateValue + '';
+    var arrayDT = dateTimeValue.split(" ");
+    var dayArray =["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    var monthArray =["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+    var currentDate = '';
+    var currentDay = '';
+    monthArray.forEach((month) => {
+        if(month.indexOf(arrayDT[1]) !== -1){ currentDate = month + ' ' + arrayDT[2] + ', ' + arrayDT[3]}
+    });
+    dayArray.forEach((day) => {
+        if(day.indexOf(arrayDT[0]) !== -1){ currentDay = day}
+    });
+    var timeValue = arrayDT[4].split(":");
+    var hr = timeValue[0];
+    if(hr >= 12){ var meridian = "PM" }
+    else{ var meridian = "AM"}
+    if(hr > 12){ hr=Math.abs(hr - 12) }
+    var currentTime = hr + ':' + timeValue[1] + ':' + timeValue[2] + ' ' + meridian;
+    var currentDT = '<p class="fs-3" style="font-family: \'Orbitron\', sans-serif;">'+ currentTime + ' | ' + currentDay + '<br>' + currentDate +'</p>';
+    return currentDT;
+}
+
+CSS/Bootstrap/Google Fonts: ----------------------------------------------------------
+C_0921675/css/styles.css
+/*
+ * Student Name: Ralph Eimerson Ompoc
+ * Student ID: c0921675
+ * Date: April , 2024
+ */
+
+/* Defaulting all text the font-family to Merriweather from Google Fonts */
+*{
+    font-family: 'Merriweather', serif;
+} 
+
+/*
+* Default hiding the weather information section which is 
+*/
+#weatherInfo, #viewImage-container{
+    display: none;
+}
+
+C_0921675/index.html
+    <!--links of the bootstrap, css, and jquery I used in my web development-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!--Links for my weather.js and bootstrap javascript file -->
+    <script src="scripts/weather.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+C_0921675/index.html
+    <!-- links of the Google fonts used in web development -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+HTML5: ----------------------------------------------------------
+C_0921675/index.html
+<!--
+ Student Name: Ralph Eimerson Ompoc
+ Student ID: c0921675
+ Date: April 8, 2024
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather Direct</title>
+    <!-- links of the bootstrap, css, and jquery I used in my web development -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet">
+    <!-- links of the Google fonts used in web development -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <!-- body section of the webpage using bootstrap class for the background color = bg-infor-subtle -->
+  <body class="bg-info-subtle">
+    <!--main section within the body of the webpage also used bootstrap class-->
+    <main role="main" class="container bs-info-text-emphasis">
+         
+      <!-- Display Logo: (1st layer in my web application) -->
+      <div class="row justify-content-center">
+        <div class="row g-0 p-0">
+          <div class="row p-1 g-1">
+            <div class="col-2 col-sm-4 col-md-3 col-lg-5"></div>
+            <div class="col-8 col-sm-4 col-md-6 col-lg-2 rounded-circle">
+              <img src="images/logo.svg" class="card-img-bottom" alt="Logo" width="auto" height="auto">
+            </div>
+            <div class="col-2 col-sm-4 col-md-3 col-lg-5"></div>
+          </div>
+        </div>
+           
+        <!-- User Interface: input text field and search button (2nd layer in my web application) -->
+        <div class="row p-0 g-0 sticky-top bg-info-subtle">
+          <div class="col-1 col-sm-2 col-md-2 col-lg-3 p-2 g-2 text-end">
+            <h6 class="d-none d-md-block d-lg-block" style="font-family: 'Merriweather', serif;">Open Weather</h6>
+          </div>
+          <div class="col-10 col-sm-8 col-md-8 col-lg-6 p-2 g-2 rounded-pill">
+            <div class="row p-2 g-2 bg-info bg-opacity-50 shadow-sm rounded-pill">
+              <!-- Text box for search city weather -->
+              <div class="col-8 col-sm-9 col-md-10 p-0 g-0 d-grid gap-1">
+                <form class="form-floating">
+                    <input type="text" class="form-control rounded-start-pill" id="cityNameValue" placeholder="Toronto">
+                    <label for="cityNameValue">Search City</label>
+                </form>
+              </div>    
+              <!-- Button for search -->
+              <div class="col-4 col-sm-3 col-md-2 p-0 g-0 d-grid gap-1">
+                  <button id="checkWeather" type="button" class="shadow-sm btn btn-outline-primary rounded-end-pill" href="#weatherInfo">                    
+                    <img src="images/icons/magnifying-glass-icon.svg">
+                  </button>
+              </div>
+            </div>              
+          </div>
+          <div class="col-1 col-sm-2 col-md-2 col-lg-3 p-2 g-2">              
+          </div>            
+        </div> 
+  
+        <!-- Collapsable Weather Information: (3rd layer in my web application) -->
+        <div class="container-sm p-1 g-1" id="weatherInfo">
+          <div class="row p-0 g-0">
+            <div id="currentDT" class="col-12 p-1 g-1 text-end">
+            </div>
+          </div>
+          <!-- 1st sub-section displaying the most important weather information -->
+          <div class="row p-0 g-0">
+            <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">           
+            </div>
+            
+            <!-- Displayed only in smaller screen like mobile or tablet -->
+            <div class="d-block d-lg-none col-12 p-1 g-1 rounded-1">
+              <div class="card text-bg-light">
+                <img id="weather-info-bg" src="" class="card-img" alt="sunrise mountain">
+                <div class="card-img-overlay text-light bg-dark bg-opacity-50">
+                    <h5 id="temperature" class="card-title display-1 text-light"></h5>                                      
+                    <p id="weather-info-1" class="card-text"></p>
+                </div>
+              </div>
+
+              <!-- 2nd sub-section for additional information like Humidity, Wind Speed, and Pressure
+                    Displayed only in smaller screen like mobile or tablet -->  
+              <div class="row row-cols-3 row-cols-sm-3 p-2 g-1 text-center fs-6">
+                <div class="col-0 col-sm-0 col-md-0 col-lg-1"></div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-10">
+                    <div class="row row-cols-3 w-100 g-0">                      
+                      <!--Humidity-->
+                      <div class="col-4 col-sm-4 col-md-4 col-lg-4  bg-opacity-75">
+                        <div class="card mb-3 rounded-5 rounded-end-0" style="max-width: 540px;">
+                          <div class="row g-0">
+                            <div class="col-md-4">
+                              <img src="images/widget-icon/humidity.svg" class="img-fluid rounded-start" alt="humidity icon">
+                            </div>
+                            <div class="col-md-8">
+                              <div class="card-body">
+                                <h6 id="humidityInfo" class="card-title"></h6>
+                                <p class="card-text">Humidity</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--Wind Speed-->
+                      <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
+                        <div class="card mb-3 rounded-0" style="max-width: 540px;">
+                          <div class="row g-0">
+                            <div class="col-md-4">
+                              <img src="images/widget-icon/wind.svg" class="img-fluid rounded-start" alt="wind icon">
+                            </div>
+                            <div class="col-md-8">
+                              <div class="card-body">
+                                <h6 id="windInfo" class="card-title">Card title</h6>
+                                <p class="card-text">Wind</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--Pressure-->
+                      <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
+                        <div class="card mb-3 rounded-5 rounded-start-0" style="max-width: 540px;">
+                          <div class="row g-0">
+                            <div class="col-md-4">
+                              <img src="images/widget-icon/pressure.svg" class="img-fluid rounded-start" alt="pressure icon">
+                            </div>
+                            <div class="col-md-8">
+                              <div class="card-body">
+                                <h6 id="pressureInfo" class="card-title"></h6>
+                                <p class="card-text">Pressure</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-0 col-sm-0 col-md-0 col-lg-1"></div>
+              </div>            
+            </div>
+            
+            <!-- This only display in larger screen like desktop, or laptop -->
+            <div class="d-none d-lg-block col-7 col-sm-7 col-md-7 col-lg-7 p-1 g-1 rounded-1">
+              <div class="card text-bg-light">
+                <img id="weather-info-bg-lg" src="" class="card-img" alt="sunrise mountain">
+                <div class="card-img-overlay text-light bg-dark bg-opacity-50">
+                    <h5 id="temperature-lg" class="card-title display-1 text-light"></h5>                                      
+                    <p id="weather-info-1-lg" class="card-text"></p>
+                </div>
+              </div>          
+            </div>
+
+            <!-- Sidebar: Digital Clock per Timezone,Humidity, Wind Speed, and Pressure Information
+                 This only display in larger screen like desktop or laptop-->
+            <div class="d-none d-lg-block col-3 col-sm-3 col-md-3 col-lg-3 p-1 g-1 border border-0 rounded-1">
+              <div class="row row-cols-3 row-cols-sm-3 p-0 g-0 m-0 text-center fs-6 border border-0">
+                <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-0 g-0 m-0 border border-0"></div>
+                <div class="col-12 col-sm-10 col-md-10 col-lg-10 p-0 g-0 m-0 border border-0">
+                  <div class="card border border-0" style="width: 18rem;">
+                    <!-- Digital Clock/Timezone for specified city -->
+                    <div class="card-header">
+                      <p id="digitalClock-lg" class="fs-3" style="font-family: 'Orbitron', sans-serif;"></p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <!--Humidity-->
+                      <li class="list-group-item">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 p-0 g-0 bg-opacity-75">
+                          <div class="card mb-3 border border-0" style="max-width: 540px;">
+                            <div class="row p-0 g-0 m-0">
+                              <div class="col-md-4 p-0 g-0 m-0">
+                                <img src="images/widget-icon/humidity.svg" class="img-fluid rounded-start" alt="humidity icon">
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card-body">
+                                  <h6 id="humidityInfo_lg" class="card-title"></h6>
+                                  <p class="card-text">Humidity</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!--Wind Speed-->
+                      <li class="list-group-item">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 p-0 g-0 bg-opacity-75">
+                          <div class="card mb-3 border border-0 " style="max-width: 540px;">
+                            <div class="row g-0">
+                              <div class="col-md-4">
+                                <img src="images/widget-icon/wind.svg" class="img-fluid rounded-start" alt="wind icon">
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card-body">
+                                  <h6 id="windInfo_lg" class="card-title">Card title</h6>
+                                  <p class="card-text">Wind</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <!--Pressure-->
+                      <li class="list-group-item">
+                        <div class="col-12 col-sm-12 col-md-21 col-lg-12 p-0 g-0 bg-opacity-75">
+                          <div class="card mb-3 border border-0 " style="max-width: 540px;">
+                            <div class="row g-0">
+                              <div class="col-md-4">
+                                <img src="images/widget-icon/pressure.svg" class="img-fluid rounded-start" alt="pressure icon">
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card-body">
+                                  <h6 id="pressureInfo_lg" class="card-title"></h6>
+                                  <p class="card-text">Pressure</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-0 col-sm-1 col-md-1 col-lg-1"></div>
+              </div> 
+            </div>
+            <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">
+            </div> 
+          </div>
+
+          <!-- 3rd sub-section with more information to display in --> 
+          <div class="row p-0 g-0">
+            <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-0">              
+            </div> 
+            <div class="col-12 col-sm-10 col-md-10 col-lg-10 bg-info bg-opacity-50 p-1 g-1 rounded-1">
+              <!-- Using the Bootstrap carousel to contain 3 slides -->
+              <div id="carouselExampleDark" class="carousel carousel-dark slide">
+                <!--User interface from bootstrap layout which is a button to slide/carousel from left or right to view more information-->
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                  <!--1st slide: weather forecast for every 3 hours-->
+                  <div class="carousel-item active" data-bs-interval="10000">
+                    <div id="row">
+                      <div class="border-info-subtle border-4 border-bottom d-none d-md-block col-12 col-sm-12 col-md-12 col-lg-12 text-center bg-info-subtle bg-opacity-0 p-1 g-1 rounded-0">
+                        <p class="card-title display-5">Weather Forecast</p>
+                      </div>
+                    </div>
+                    <div class="h-100 row row-cols-3 row-cols-sm-3 p-2 g-1 text-center fs-6">
+                      <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>
+                      <div class="col-10 col-sm-10 col-md-10 col-lg-10">
+                          <div class="row row-cols-3 w-100 g-0">                      
+                            <!--Forecast 1-->
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4  bg-opacity-75">
+                              <div class="card mb-3" style="max-width: 900px;">
+                                <div class="row g-0">
+                                  <div class="d-none d-md-block d-lg-block col-md-4 p-1 g-1">
+                                    <img id="forecast-1-lg" src="" alt="sky cloudy" height="70%" width="auto" class="rounded mx-auto d-block">
+                                  </div>
+                                  <div class="d-block d-md-none col-md-4 p-1 g-1">
+                                    <img id="forecast-1" src="" alt="sky cloudy" height="150%" width="auto" class="rounded mx-auto d-block">
+                                  </div>
+                                  <div class="col-md-8">
+                                    <div class="card-body">
+                                      <h5 id="forecast-today-temp1" class="card-title"></h5>
+                                      <p id="forecast-hour1" class="card-text">Humidity</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!--Forecast 2-->
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
+                              <div class="card mb-3" style="max-width: 900px;">
+                                <div class="row g-0">
+                                  <div class="d-none d-md-block d-lg-block col-md-4 p-1 g-1">
+                                    <img id="forecast-2-lg" src="" alt="sky cloudy" height="70%" width="auto" class="rounded mx-auto d-block">
+                                  </div>
+                                  <div class="d-block d-md-none col-md-4 p-1 g-1">
+                                    <img id="forecast-2" src="" alt="sky cloudy" height="150%" width="auto" class="rounded mx-auto d-block">
+                                  </div>
+                                  <div class="col-md-8">
+                                    <div class="card-body">
+                                      <h5 id="forecast-today-temp2" class="card-title"></h5>
+                                      <p id="forecast-hour2" class="card-text">Wind</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!--Forecast 3-->
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 bg-opacity-75">
+                              <div class="card mb-3" style="max-width: 900px;">
+                                <div class="row g-0">
+                                  <div class="d-none d-md-block d-lg-block col-md-4 p-1 g-1">
+                                    <img id="forecast-3-lg" src="" alt="sky cloudy" height="70%" width="auto" class="rounded mx-auto d-block">
+                                  </div>
+                                  <div class="d-block d-md-none col-md-4 p-1 g-1">
+                                    <img id="forecast-3" src="" alt="sky cloudy" height="150%" width="auto" class="rounded mx-auto d-block">
+                                  </div>
+                                  <div class="col-md-8">
+                                    <div class="card-body">
+                                      <h5 id="forecast-today-temp3" class="card-title"></h5>
+                                      <p id="forecast-hour3" class="card-text">Pressure</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>
+                    </div>
+                  </div>
+
+                  <!--2nd slide: for additional information that includes the population, ground leve, sea level, visibility, wind direction-->
+                  <div class="carousel-item" data-bs-interval="2000">
+                    <div class="row">
+                      <div class="border-info-subtle border-4 border-bottom d-none d-md-block col-12 col-sm-12 col-md-12 col-lg-12 text-center bg-info-subtle bg-opacity-0 p-1 g-1 rounded-0">
+                        <p class="card-title display-5">Additional Information</p>
+                      </div>
+                    </div>
+                    <div class="h-100 row row-cols-3 row-cols-sm-3 p-2 g-1 text-end fs-6">
+                      <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>
+                      <div class="col-10 col-sm-10 col-md-10 col-lg-10">
+                          <div class="row w-100 g-0">
+                            <ul class="list-group list-group-flush">
+                              <li id="population" class="list-group-item"></li>
+                              <li id="ground_level" class="list-group-item"></li>
+                              <li id="sea_level" class="list-group-item"></li>
+                              <li id="visibility" class="list-group-item"></li>
+                              <li id="wind_direction" class="list-group-item"></li>
+                              <li class="list-group-item"></li>
+                            </ul>
+                          </div>
+                      </div>
+                      <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>  
+                    </div>
+                  </div>
+                </div>
+                <!-- Button to change slides from previous or next-->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>  
+            </div>
+            <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">              
+            </div> 
+          </div>
+          <!-- Digital Clock/Time Zone base on specified city. Dipslayed only on tablet or mobile viewport -->
+          <div class="d-block d-lg-none row p-1 g-1 ">
+            <div class="col-0 p-2 g-2">
+            </div>
+            <div class="col-12 col-sm-12 col-md-8 col-lg-6 p-2 g-2 m-2 text-center">
+              <p id="digitalClock" class="fs-3" style="font-family: 'Orbitron', sans-serif;"></p>
+            </div>
+            <div class="col-0 p-2 g-2">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Unsplash Images base on user selected category -->
+      <div class="row p-0 g-0">
+        <div class="col-1 col-sm-2 col-md-2 col-lg-3 p-2 g-2">
+        </div>
+        <!-- Input box with selection type field for Unsplash images base on selected category -->
+        <div class="col-10 col-sm-8 col-md-8 col-lg-6 p-2 g-2 rounded-pill">
+            <div class="row p-2 g-2 bg-dark shadow-sm rounded-pill">
+              <div class="col-12 p-0 g-0 d-grid gap-1">
+                <select id="image-unsplash" class="form-select rounded-pill" aria-label="Large select example">
+                  <option selected>Select Category</option>
+                  <option value="Space">Space</option>
+                  <option value="Adventure">Adventure</option>
+                  <option value="Bears">Bears</option>
+                </select>
+              </div>             
+          </div>
+          <!-- Displays random images fetched from Unsplash API for every 20 seconds-->
+          <div id="viewImage-container" class="col-12 p-2 g-2 shadow-sm rounded-2">
+            <div class="card text-bg-dark">                    
+              <img id="randomImage" src="" class="img-thumbnail float-end d-block w-100"  alt="Random Image">
+              <div class="card-img-overlay">
+                <h5 class="card-title">Featured Images</h5>
+                <p class="card-text fw-lighter fst-italic"><small>*Random images from Unsplash API for every 20 seconds.</small></p>
+              </div>
+            </div>
+          </div>          
+        </div>
+        <div class="col-1 col-sm-2 col-md-2 col-lg-3 p-2 g-2">
+          <h6 class="d-none d-md-block d-lg-block">Unsplash</h6>
+        </div>
+      </div>         
+    </main>
+
+    <!-- Footer/Banner: Display my name, Copyright logo and text, year, "All Right Reserved" and student id -->
+    <footer class="footer bg-info bg-opacity-75">
+      <div class="container text-center p-0 g-0 lh-0 fs-6 text-dark">
+        <p><span class="fw-bolder">Ralph Eimerson Ompoc</span> <br>&#169; Copyright 2024 
+          <br>All Right Reserved <br>C0921675</p>
+      </div>
+    </footer>
+
+    <!-- Links for my weather.js, unsplash.js, search-unsplash.js, and bootstrap javascript file -->
+    <script src="scripts/weather.js"></script>
+    <script src="scripts/search-unsplash.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+
+
+			

@@ -1,7 +1,7 @@
 /*
- Student Name: Ralph Eimerson Ompoc
- Student ID: c0921675
- Date: April , 2024
+ * Student Name: Ralph Eimerson Ompoc
+ * Student ID: c0921675
+ * Date: April , 2024
  */
 
 /* Defaulting all text the font-family to Merriweather from Google Fonts */
@@ -11,8 +11,6 @@
 
 /*
 * Default hiding the weather information section which is 
-* <div id = 'weatherInfo'> tag in HTML file
-* <div id = 'viewImage-container>
 */
 #weatherInfo, #viewImage-container{
     display: none;

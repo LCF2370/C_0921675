@@ -1,7 +1,7 @@
 /**
  * Student Name: Ralph Eimerson Ompoc
  * Student ID: c0921675
- * Date: April , 2024
+ * Date: April 8, 2024
  */
 
 //Variable declaration
@@ -28,7 +28,6 @@ $(document).ready(function(){
                     type: 'GET',
                     dataType: 'jsonp',
                     success: function(data){
-                        console.log(data);
                         //Variable declaration                    
                         latitude = data.coord.lat;
                         longitude = data.coord.lon;                    
@@ -37,8 +36,6 @@ $(document).ready(function(){
                         var timezoneOffset = longitude / 15;
                         var date = new Date();
                         document.getElementById("currentDT").innerHTML = dateTime(date);
-
-                        console.log(date);
                         date.setHours(date.getUTCHours() + timezoneOffset);
                         var h = date.getHours();
                         var min = date.getMinutes();
@@ -69,7 +66,6 @@ $(document).ready(function(){
                         document.getElementById("digitalClock").innerHTML = hr + ":" + m + " " + meridian + " | " + data.name + ", " +data.sys.country;
                         document.getElementById("digitalClock-lg").innerHTML = hr + ":" + m + " " + meridian + "<br> <h6>" + data.name + ", " +data.sys.country + "<h6>";
                         // Weather information background
-                        console.log(weatherBG(weather, hr,meridian));
                         document.getElementById('weather-info-bg').src = weatherBG(weather, hr, meridian);
                         document.getElementById('weather-info-bg-lg').src = weatherBG(weather, hr, meridian);
 
@@ -80,7 +76,6 @@ $(document).ready(function(){
                             timeZoneArray.push(stringHour);
                             h += 3;
                         } 
-                        console.log(timeZoneArray);
                         var meridianArray = [];
                         for (var i = 0; i < 3; i++) {
                             if (timeZoneArray[i] >= 0 && timeZoneArray[i] < 12){
@@ -93,7 +88,6 @@ $(document).ready(function(){
                                 var hrs = 0;                           
                                 if(timeZoneArray[i] > 12){ 
                                     hrs=Math.abs(timeZoneArray[i] - 12);
-                                    console.log(hrs);
                                     let stringMeridian =hrs + " " + meridian;
                                     meridianArray.push(stringMeridian);
                                 }else{
@@ -105,13 +99,11 @@ $(document).ready(function(){
                                 var meridian = "AM";
                                 if(timeZoneArray[i] > 24){ 
                                     hrs=Math.abs(timeZoneArray[i] - 24);
-                                    console.log(hrs);
                                     let stringMeridian = hrs + " " + meridian;
                                     meridianArray.push(stringMeridian); 
                                 }                           
                                 else if(timeZoneArray[i] == 24){
                                     hrs=Math.abs(timeZoneArray[i] - 12);
-                                    console.log(hrs);
                                     let stringMeridian = hrs + " " + meridian;
                                     meridianArray.push(stringMeridian);
                                 }
@@ -120,9 +112,7 @@ $(document).ready(function(){
                                     meridianArray.push(stringMeridian);
                                 }
                             }
-                        } 
-                        console.log(timeZoneArray);
-                        console.log(meridianArray);
+                        }
                         //Variable assigning a string value that includes city name and country acronym 
                         city = data.name + ", " +data.sys.country;
                         $.ajax({                        
@@ -134,7 +124,6 @@ $(document).ready(function(){
                                 /**Send data to HTML to display the weather information using getElementID
                                 *  The following data retrieved are temperature in every 3 hours, sea level, ground level, visibility
                                 */
-                               console.log(data);
                                 let weatherForecast1 = initCap(data.list[0].weather[0].description);
                                 let weatherForecast2 = initCap(data.list[1].weather[0].description);
                                 let weatherForecast3 = initCap(data.list[2].weather[0].description);
@@ -182,6 +171,7 @@ $(document).ready(function(){
                     }
                 });
             }
+            // Set interval weather update and digital update for every 1 second
             weatherUpdate();
             setInterval(weatherUpdate, 1000);
         }
@@ -193,7 +183,7 @@ $(document).ready(function(){
     });
 });
 
-//Functions that will Initial letter of each word will be in UPPERCASE
+//Functions that will change Initial letter of each word in UPPERCASE
 function initCap(str) {
     var splitStr = str.toLowerCase().split(' ');
     for (var i = 0; i < splitStr.length; i++) {
@@ -201,12 +191,14 @@ function initCap(str) {
     }
     return splitStr.join(' '); 
 }
-
+/* Function to determine the proper weather icon for three weather forecast in every 3 hours
+*       Available weather icon are sunny cloud, rainy, snowy and clear sky for
+*       everning or daylight.
+*/
 function weatherIcon(w, timeForecast){
     var timeWeather = timeForecast.split(" ");
     var hr = parseInt(timeWeather[0]);
     let weather = w.toLowerCase();
-    console.log(hr + " " + timeWeather)
     if(timeWeather[1] == 'AM'){
         if (hr > 5 && hr < 12){
             if(weather.indexOf("cloud") !== -1){return timeIcon = 'images/weather-icon/sunny-cloud.svg';}
@@ -236,11 +228,14 @@ function weatherIcon(w, timeForecast){
         }
     }
 }
+/* Function to determine the proper background image for the weather information
+*       available background images are cloudy sky, rainy, snowy and clear sky for
+*       everning or daylight.
+*/
 function weatherBG(w, h, m){
     var timeWeather = m;
     var hr = parseInt(h);
     let weather = w.toLowerCase();
-    console.log(hr + " " + timeWeather)
     if(timeWeather == 'AM'){
         if (hr > 5 && hr < 12){
             if(weather.indexOf("cloud") !== -1){return weatherBg = 'images/weather-bg/cloudy-sky-AM.svg';}
@@ -270,7 +265,7 @@ function weatherBG(w, h, m){
         }
     }
 }
-
+// Function for the current date and time displayed in Panel 3 
 function dateTime(dateValue){
     var dateTimeValue = dateValue + '';
     var arrayDT = dateTimeValue.split(" ");
@@ -279,11 +274,6 @@ function dateTime(dateValue){
     "July", "August", "September", "October", "November", "December"];
     var currentDate = '';
     var currentDay = '';
-    console.log(arrayDT[0]);
-    console.log(arrayDT[1]);
-    console.log(arrayDT[2]);
-    console.log(arrayDT[3]);
-    console.log(arrayDT[4]);
     monthArray.forEach((month) => {
         if(month.indexOf(arrayDT[1]) !== -1){ currentDate = month + ' ' + arrayDT[2] + ', ' + arrayDT[3]}
     });

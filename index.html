@@ -1,7 +1,7 @@
 <!--
  Student Name: Ralph Eimerson Ompoc
  Student ID: c0921675
- Date: April , 2024
+ Date: April 8, 2024
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -12,10 +12,11 @@
     <!-- links of the bootstrap, css, and jquery I used in my web development -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="css/styles.css" rel="stylesheet">
-    <!-- links of the Google fonts I used in my web development -->
+    <!-- links of the Google fonts used in web development -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <!-- body section of the webpage using bootstrap class for the background color = bg-infor-subtle -->
   <body class="bg-info-subtle">
@@ -71,7 +72,7 @@
             <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">           
             </div>
             
-            <!-- This only display in smaller screen like phones -->
+            <!-- Displayed only in smaller screen like mobile or tablet -->
             <div class="d-block d-lg-none col-12 p-1 g-1 rounded-1">
               <div class="card text-bg-light">
                 <img id="weather-info-bg" src="" class="card-img" alt="sunrise mountain">
@@ -81,7 +82,8 @@
                 </div>
               </div>
 
-              <!-- 2nd sub-section for additional information like Humidity, Wind Speed, and Pressure Infor Card Display -->  
+              <!-- 2nd sub-section for additional information like Humidity, Wind Speed, and Pressure
+                    Displayed only in smaller screen like mobile or tablet -->  
               <div class="row row-cols-3 row-cols-sm-3 p-2 g-1 text-center fs-6">
                 <div class="col-0 col-sm-0 col-md-0 col-lg-1"></div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-10">
@@ -140,7 +142,7 @@
               </div>            
             </div>
             
-            <!-- This only display in larger screen like tablet, desktop, or laptop -->
+            <!-- This only display in larger screen like desktop, or laptop -->
             <div class="d-none d-lg-block col-7 col-sm-7 col-md-7 col-lg-7 p-1 g-1 rounded-1">
               <div class="card text-bg-light">
                 <img id="weather-info-bg-lg" src="" class="card-img" alt="sunrise mountain">
@@ -152,13 +154,13 @@
             </div>
 
             <!-- Sidebar: Digital Clock per Timezone,Humidity, Wind Speed, and Pressure Information
-                 This only display in larger screen like desktop, tablet, or laptop-->
+                 This only display in larger screen like desktop or laptop-->
             <div class="d-none d-lg-block col-3 col-sm-3 col-md-3 col-lg-3 p-1 g-1 border border-0 rounded-1">
               <div class="row row-cols-3 row-cols-sm-3 p-0 g-0 m-0 text-center fs-6 border border-0">
                 <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-0 g-0 m-0 border border-0"></div>
                 <div class="col-12 col-sm-10 col-md-10 col-lg-10 p-0 g-0 m-0 border border-0">
                   <div class="card border border-0" style="width: 18rem;">
-                    <!-- Digital Clock for every timezone -->
+                    <!-- Digital Clock/Timezone for specified city -->
                     <div class="card-header">
                       <p id="digitalClock-lg" class="fs-3" style="font-family: 'Orbitron', sans-serif;"></p>
                     </div>
@@ -258,17 +260,14 @@
                                 <div class="row g-0">
                                   <div class="d-none d-md-block d-lg-block col-md-4 p-1 g-1">
                                     <img id="forecast-1-lg" src="" alt="sky cloudy" height="70%" width="auto" class="rounded mx-auto d-block">
-                                    <!--<p class="card-title display-1">*</p>-->
                                   </div>
                                   <div class="d-block d-md-none col-md-4 p-1 g-1">
                                     <img id="forecast-1" src="" alt="sky cloudy" height="150%" width="auto" class="rounded mx-auto d-block">
-                                    <!--<p class="card-title display-1">*</p>-->
                                   </div>
                                   <div class="col-md-8">
                                     <div class="card-body">
                                       <h5 id="forecast-today-temp1" class="card-title"></h5>
                                       <p id="forecast-hour1" class="card-text">Humidity</p>
-                                      <!--<p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>-->
                                     </div>
                                   </div>
                                 </div>
@@ -280,11 +279,9 @@
                                 <div class="row g-0">
                                   <div class="d-none d-md-block d-lg-block col-md-4 p-1 g-1">
                                     <img id="forecast-2-lg" src="" alt="sky cloudy" height="70%" width="auto" class="rounded mx-auto d-block">
-                                    <!--<p class="card-title display-1">*</p>-->
                                   </div>
                                   <div class="d-block d-md-none col-md-4 p-1 g-1">
                                     <img id="forecast-2" src="" alt="sky cloudy" height="150%" width="auto" class="rounded mx-auto d-block">
-                                    <!--<p class="card-title display-1">*</p>-->
                                   </div>
                                   <div class="col-md-8">
                                     <div class="card-body">
@@ -301,11 +298,9 @@
                                 <div class="row g-0">
                                   <div class="d-none d-md-block d-lg-block col-md-4 p-1 g-1">
                                     <img id="forecast-3-lg" src="" alt="sky cloudy" height="70%" width="auto" class="rounded mx-auto d-block">
-                                    <!--<p class="card-title display-1">*</p>-->
                                   </div>
                                   <div class="d-block d-md-none col-md-4 p-1 g-1">
                                     <img id="forecast-3" src="" alt="sky cloudy" height="150%" width="auto" class="rounded mx-auto d-block">
-                                    <!--<p class="card-title display-1">*</p>-->
                                   </div>
                                   <div class="col-md-8">
                                     <div class="card-body">
@@ -346,10 +341,6 @@
                       <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>  
                     </div>
                   </div>
-
-                  <!-- 3rd slide: Featured images of environment fetch from Unsplash API 
-                  <div class="carousel-item">
-                  </div> -->
                 </div>
                 <!-- Button to change slides from previous or next-->
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
@@ -365,8 +356,7 @@
             <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">              
             </div> 
           </div>
-
-          <!-- Digital Clock-->
+          <!-- Digital Clock/Time Zone base on specified city. Dipslayed only on tablet or mobile viewport -->
           <div class="d-block d-lg-none row p-1 g-1 ">
             <div class="col-0 p-2 g-2">
             </div>
@@ -379,13 +369,13 @@
         </div>
       </div>
       
-      <!-- Display Unsplash Images base on user selected category -->
+      <!-- Unsplash Images base on user selected category -->
       <div class="row p-0 g-0">
         <div class="col-1 col-sm-2 col-md-2 col-lg-3 p-2 g-2">
         </div>
+        <!-- Input box with selection type field for Unsplash images base on selected category -->
         <div class="col-10 col-sm-8 col-md-8 col-lg-6 p-2 g-2 rounded-pill">
             <div class="row p-2 g-2 bg-dark shadow-sm rounded-pill">
-              <!-- Selection field for Unsplash search images base on selected category -->
               <div class="col-12 p-0 g-0 d-grid gap-1">
                 <select id="image-unsplash" class="form-select rounded-pill" aria-label="Large select example">
                   <option selected>Select Category</option>
@@ -395,6 +385,7 @@
                 </select>
               </div>             
           </div>
+          <!-- Displays random images fetched from Unsplash API for every 20 seconds-->
           <div id="viewImage-container" class="col-12 p-2 g-2 shadow-sm rounded-2">
             <div class="card text-bg-dark">                    
               <img id="randomImage" src="" class="img-thumbnail float-end d-block w-100"  alt="Random Image">
@@ -421,7 +412,6 @@
 
     <!-- Links for my weather.js, unsplash.js, search-unsplash.js, and bootstrap javascript file -->
     <script src="scripts/weather.js"></script>
-    <!--<script src="scripts/unsplash.js"></script>-->
     <script src="scripts/search-unsplash.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>

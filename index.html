@@ -62,6 +62,10 @@
   
         <!-- Collapsable Weather Information: (3rd layer in my web application) -->
         <div class="container-sm p-1 g-1" id="weatherInfo">
+          <div class="row p-0 g-0">
+            <div id="currentDT" class="col-12 p-1 g-1 text-end">
+            </div>
+          </div>
           <!-- 1st sub-section displaying the most important weather information -->
           <div class="row p-0 g-0">
             <div class="col-0 col-sm-1 col-md-1 col-lg-1 p-1 g-1">           
@@ -343,16 +347,9 @@
                     </div>
                   </div>
 
-                  <!-- 3rd slide: Featured images of environment fetch from Unsplash API -->
+                  <!-- 3rd slide: Featured images of environment fetch from Unsplash API 
                   <div class="carousel-item">
-                    <div class="card text-bg-dark">                    
-                      <img id="randomImage" src="" class="img-thumbnail float-end d-block w-100"  alt="Random Image">
-                      <div class="card-img-overlay">
-                        <h5 class="card-title">Featured Images</h5>
-                        <p class="card-text fw-lighter fst-italic"><small>*Random images from Unsplash API for every 20 seconds.</small></p>
-                      </div>
-                    </div>
-                  </div>
+                  </div> -->
                 </div>
                 <!-- Button to change slides from previous or next-->
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
@@ -370,10 +367,10 @@
           </div>
 
           <!-- Digital Clock-->
-          <div class="d-block d-lg-none row p-1 g-1 text-center">
+          <div class="d-block d-lg-none row p-1 g-1 ">
             <div class="col-0 p-2 g-2">
             </div>
-            <div class="col-12 col-sm-12 col-md-8 col-lg-6 p-2 g-2 m-2">
+            <div class="col-12 col-sm-12 col-md-8 col-lg-6 p-2 g-2 m-2 text-center">
               <p id="digitalClock" class="fs-3" style="font-family: 'Orbitron', sans-serif;"></p>
             </div>
             <div class="col-0 p-2 g-2">
@@ -399,17 +396,12 @@
               </div>             
           </div>
           <div id="viewImage-container" class="col-12 p-2 g-2 shadow-sm rounded-2">
-            <div id="carouselExample" class="carousel slide">
-              <div id="viewImage" class="carousel-inner">
+            <div class="card text-bg-dark">                    
+              <img id="randomImage" src="" class="img-thumbnail float-end d-block w-100"  alt="Random Image">
+              <div class="card-img-overlay">
+                <h5 class="card-title">Featured Images</h5>
+                <p class="card-text fw-lighter fst-italic"><small>*Random images from Unsplash API for every 20 seconds.</small></p>
               </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
             </div>
           </div>          
         </div>
@@ -429,8 +421,8 @@
 
     <!-- Links for my weather.js, unsplash.js, search-unsplash.js, and bootstrap javascript file -->
     <script src="scripts/weather.js"></script>
-    <script src="scripts/unsplash.js"></script>
-    <script src="scripts/search-unsplash.js"></script><!---->
+    <!--<script src="scripts/unsplash.js"></script>-->
+    <script src="scripts/search-unsplash.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>

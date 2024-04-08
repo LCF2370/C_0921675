@@ -36,6 +36,9 @@ $(document).ready(function(){
                         //Define the current time of specified location using longitude
                         var timezoneOffset = longitude / 15;
                         var date = new Date();
+                        document.getElementById("currentDT").innerHTML = dateTime(date);
+
+                        console.log(date);
                         date.setHours(date.getUTCHours() + timezoneOffset);
                         var h = date.getHours();
                         var min = date.getMinutes();
@@ -131,6 +134,7 @@ $(document).ready(function(){
                                 /**Send data to HTML to display the weather information using getElementID
                                 *  The following data retrieved are temperature in every 3 hours, sea level, ground level, visibility
                                 */
+                               console.log(data);
                                 let weatherForecast1 = initCap(data.list[0].weather[0].description);
                                 let weatherForecast2 = initCap(data.list[1].weather[0].description);
                                 let weatherForecast3 = initCap(data.list[2].weather[0].description);
@@ -265,4 +269,33 @@ function weatherBG(w, h, m){
             return weatherBg = 'images/weather-bg/clear-sky-AM.svg';
         }
     }
+}
+
+function dateTime(dateValue){
+    var dateTimeValue = dateValue + '';
+    var arrayDT = dateTimeValue.split(" ");
+    var dayArray =["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    var monthArray =["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+    var currentDate = '';
+    var currentDay = '';
+    console.log(arrayDT[0]);
+    console.log(arrayDT[1]);
+    console.log(arrayDT[2]);
+    console.log(arrayDT[3]);
+    console.log(arrayDT[4]);
+    monthArray.forEach((month) => {
+        if(month.indexOf(arrayDT[1]) !== -1){ currentDate = month + ' ' + arrayDT[2] + ', ' + arrayDT[3]}
+    });
+    dayArray.forEach((day) => {
+        if(day.indexOf(arrayDT[0]) !== -1){ currentDay = day}
+    });
+    var timeValue = arrayDT[4].split(":");
+    var hr = timeValue[0];
+    if(hr >= 12){ var meridian = "PM" }
+    else{ var meridian = "AM"}
+    if(hr > 12){ hr=Math.abs(hr - 12) }
+    var currentTime = hr + ':' + timeValue[1] + ':' + timeValue[2] + ' ' + meridian;
+    var currentDT = '<p class="fs-3" style="font-family: \'Orbitron\', sans-serif;">'+ currentTime + ' | ' + currentDay + '<br>' + currentDate +'</p>';
+    return currentDT;
 }

@@ -1,7 +1,7 @@
 <!--
  Student Name: Ralph Eimerson Ompoc
  Student ID: c0921675
- Date: April 8, 2024
+ Date: April 9, 2024
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -27,11 +27,36 @@
       <div class="row justify-content-center">
         <div class="row g-0 p-0">
           <div class="row p-1 g-1">
-            <div class="col-2 col-sm-4 col-md-3 col-lg-5"></div>
-            <div class="col-8 col-sm-4 col-md-6 col-lg-2 rounded-circle">
-              <img src="images/logo.svg" class="card-img-bottom" alt="Logo" width="auto" height="auto">
+            <div class="col-0 col-lg-0"></div>
+
+            <div class="col-12 col-lg-10">
+              <div class="col-1"></div>
+
+              <div class="card mb-3 col-10 bg-info-subtle border border-0" style="max-width: 540px;">
+                <div class="row p-0 g-0">
+                  <div class="col-1"></div>
+                  
+                  <div class="col-10">
+                    <div class="row col-12 g-2 p-2 ">
+                      <div class="col-2">
+                        <img src="images/logo.svg" class="card-img-bottom" alt="Logo" width="100%" height="100%">
+                      </div>
+                      <div class="col-8">
+                        <div class="card-body border-start border-warning">
+                          <h5 class="card-title">Ralph Eimerson Ompoc</h5>
+                          <p class="card-text">&#169; Copyright 2024 | C0921675</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-1"></div>
+                </div>
+              </div>
+
+              <div class="col-1"></div>
             </div>
-            <div class="col-2 col-sm-4 col-md-3 col-lg-5"></div>
+
+            <div class="col-0 col-lg-1"></div>
           </div>
         </div>
            
@@ -55,10 +80,22 @@
                     <img src="images/icons/magnifying-glass-icon.svg">
                   </button>
               </div>
-            </div>              
+            </div>
+            <br>           
+            <!-- Input box with selection type field for Unsplash images base on selected category -->
+            <div class="row p-2 g-2 bg-dark shadow-sm rounded-pill">
+              <div class="col-12 p-0 g-0 d-grid gap-1">
+                <select id="image-unsplash" class="form-select rounded-pill" aria-label="Large select example">
+                  <option selected>Select Category</option>
+                  <option value="Space">Space</option>
+                  <option value="Adventure">Adventure</option>
+                  <option value="Bears">Bears</option>
+                </select>
+              </div>             
+            </div>             
           </div>
-          <div class="col-1 col-sm-2 col-md-2 col-lg-3 p-2 g-2">              
-          </div>            
+          <div class="col-1 col-sm-2 col-md-2 col-lg-3 p-2 g-2"><br><br><br><br>
+            <h6 class="d-none d-md-block d-lg-block" style="font-family: 'Merriweather', serif;">Unsplash</h6></div>            
         </div> 
   
         <!-- Collapsable Weather Information: (3rd layer in my web application) -->
@@ -373,18 +410,7 @@
       <div class="row p-0 g-0">
         <div class="col-1 col-sm-2 col-md-2 col-lg-3 p-2 g-2">
         </div>
-        <!-- Input box with selection type field for Unsplash images base on selected category -->
         <div class="col-10 col-sm-8 col-md-8 col-lg-6 p-2 g-2 rounded-pill">
-            <div class="row p-2 g-2 bg-dark shadow-sm rounded-pill">
-              <div class="col-12 p-0 g-0 d-grid gap-1">
-                <select id="image-unsplash" class="form-select rounded-pill" aria-label="Large select example">
-                  <option selected>Select Category</option>
-                  <option value="Space">Space</option>
-                  <option value="Adventure">Adventure</option>
-                  <option value="Bears">Bears</option>
-                </select>
-              </div>             
-          </div>
           <!-- Displays random images fetched from Unsplash API for every 20 seconds-->
           <div id="viewImage-container" class="col-12 p-2 g-2 shadow-sm rounded-2">
             <div class="card text-bg-dark">                    
@@ -397,18 +423,10 @@
           </div>          
         </div>
         <div class="col-1 col-sm-2 col-md-2 col-lg-3 p-2 g-2">
-          <h6 class="d-none d-md-block d-lg-block">Unsplash</h6>
+          <h6 class="d-none d-md-block d-lg-block"></h6>
         </div>
       </div>         
     </main>
-
-    <!-- Footer/Banner: Display my name, Copyright logo and text, year, "All Right Reserved" and student id -->
-    <footer class="footer bg-info bg-opacity-75">
-      <div class="container text-center p-0 g-0 lh-0 fs-6 text-dark">
-        <p><span class="fw-bolder">Ralph Eimerson Ompoc</span> <br>&#169; Copyright 2024 
-          <br>All Right Reserved <br>C0921675</p>
-      </div>
-    </footer>
 
     <!-- Links for my weather.js, unsplash.js, search-unsplash.js, and bootstrap javascript file -->
     <script src="scripts/weather.js"></script>

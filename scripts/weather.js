@@ -1,7 +1,7 @@
 /**
  * Student Name: Ralph Eimerson Ompoc
  * Student ID: c0921675
- * Date: April 8, 2024
+ * Date: April 9, 2024
  */
 
 //Variable declaration
@@ -63,8 +63,8 @@ $(document).ready(function(){
                         document.getElementById("windInfo_lg").innerHTML = Math.round(data.wind.speed) +" m/s";
                         document.getElementById("pressureInfo_lg").innerHTML = data.main.pressure + " hPa";
                         document.getElementById("forecast-today-temp1").innerHTML = Math.round(data.main.temp) +"&deg;C";
-                        document.getElementById("digitalClock").innerHTML = hr + ":" + m + " " + meridian + " | " + data.name + ", " +data.sys.country;
-                        document.getElementById("digitalClock-lg").innerHTML = hr + ":" + m + " " + meridian + "<br> <h6>" + data.name + ", " +data.sys.country + "<h6>";
+                        document.getElementById("digitalClock").innerHTML = hr + ":" + m + " " + meridian + " | " + data.name + ", " + data.sys.country;
+                        document.getElementById("digitalClock-lg").innerHTML = hr + ":" + m + " " + meridian + "<br> <h6>" + data.name + ", " + data.sys.country + "<h6>";
                         // Weather information background
                         document.getElementById('weather-info-bg').src = weatherBG(weather, hr, meridian);
                         document.getElementById('weather-info-bg-lg').src = weatherBG(weather, hr, meridian);
